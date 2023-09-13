@@ -1,0 +1,9 @@
+QUESTAO 2
+
+Melhor caso: 
+Comparacoes = n-1
+Movimentacoes = 0
+
+Pior caso: 
+Comparacoes = n(n-1)/2
+Movimentacoes = n(n-1)/2

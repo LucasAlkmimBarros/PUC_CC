@@ -1,0 +1,10 @@
+QUESTAO 31
+
+Q: FAÇA O QUADRO DE MEMÓRIA DO PROGRAMA ABAIXO
+
+R:
+
+x: 5
+a: 5
+a: 10
+x: 5

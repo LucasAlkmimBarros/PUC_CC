@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <form class="form" id="login">
+            <h1 class="form_titulo">Login</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" id="usuario_email" class="form__input" autofocus placeholder="Usuário ou email:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" id="senha" class="form__input" autofocus placeholder="Senha">
+                <div class="form__input-error-message"></div>
+            </div>
+            <button class="form__button" type="submit">Entrar</button>
+            <p class="form__text">
+                <a href="#" class="form__link">Esqueceu sua senha?</a>
+            </p>
+            <p class="form__text">
+                <a class="form__link" href="./" id="linkCreateAccount">Não tem uma conta? Registre-se</a>
+            </p>
+        </form>
+        <form class="form form--hidden" id="createAccount">
+            <h1 class="form__title">Registrar</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" id="registro_nome" class="form__input" autofocus placeholder="Nome:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" id="registro_idade" class="form__input" autofocus placeholder="Idade:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" id="registro_telefone" class="form__input" autofocus placeholder="Número de celular:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" id="registro_endereco" class="form__input" autofocus placeholder="Endereço:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" id="registro_emergencia" class="form__input" autofocus placeholder="Contato de Emergência:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" id="registro_email" class="form__input" autofocus placeholder="Email:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" id="registro_senha" class="form__input" autofocus placeholder="Senha:">
+                <div class="form__input-error-message"></div>
+            </div>
+            <button class="form__button" id="btnCadastrar" type="submit">Cadastrar</button>
+            <p class="form__text">
+                <a class="form__link" href="./" id="linkLogin">Já tem uma conta? Entre</a>
+            </p>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt -BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade?</title>
+</head>
+<body>
+    <h1>Brasileiro ou não?</h1>
+    Digite a sua nacionalidade: <input type="text" id="nac">
+    <input type="button" value="Confirmar" onclick="confirmarNacionalidade()">
+    <div id="resultado">
+
+    </div>
+
+    <script>
+        function confirmarNacionalidade(){
+            var nacionalidade = document.getElementById('nac').value.toLowerCase()
+            var res = document.getElementById('resultado')
+            res.innerHTML = `<div> Olá, </div>`
+            if (nacionalidade == 'brasileiro' || nacionalidade == 'br'){
+                res.innerHTML += `Você é <strong> BRASILEIRO </strong>!!`
+            }else{
+                res.innerHTML += `Você é estrangeiro!!`
+            }
+            
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+Guia03
+Lucas Alkmim Barros - 807205
+
+01.) Determinar os complementos para os valores e as quantidades de bits indicadas:
+DICA: Ajustar primeiro o tamanho, antes de calcular o complemento (C1,n ou C2,n).
+
+01a.) manualmente
+a.) C1,6 (1001(2)) = 110110(2)
+b.) C1,8 (1100(2)) = 11110011(2)
+c.) C2,6 (101101(2)) = 010010(2) + 1 = 010011(2)
+d.) C2,7 (100111(2)) = 1011000(2) + 1 = 1011001(2)
+e.) C2,8 (110001(2)) = 11001110(2) + 1 = 11001111(2)
+
+
+02.) Determinar os complementos para os valores e as quantidades indicadas:
+DICA: Para valores em outras bases, converter para binário, primeiro;
+encontrar a representação em complemento, e retornar à base,
+caso necessário.
+
+02a.) manualmente
+a.) C1,6 (312(4)) = 001001(2)
+b.) C1,8 (5F(16)) = 10100000(2)
+c.) C2,6 (123(4)) = 100100(2) + 1 = 100101
+d.) C2,10 (147(8)) = 1110011000(2) + 1 = 1110011001
+e.) C2,8 (D5(16)) = 00101010(2) + 1 = 00101011
+
+
+03.) Determinar os valores positivos equivalentes aos complementos de dois indicados:
+DICA: Subtrair uma unidade, antes de inverter cada bit.
+
+03a.) manualmente
+a.) 10101(2) = 01011(10)
+b.) 110011(2) = 001101(10)
+c.) 100111(2) = 011001(2)
+d.) 1011011(2) = 0100101(2)
+e.) 1010001(2) = 0101111(2) -> 2F(16)
+
+
+04.) Fazer as operações indicadas mediante uso de complemento de dois:
+DICA: Levar todas as representações para binário, com a mesma quantidade de bits,
+a menor necessária para acomodar a parte significativa e o sinal.
+Substituir apenas os subtraendos pelos complementos equivalentes e somar.
+Voltar os resultados às bases originais.
+
+04a.) manualmente
+a.) 11100(2) - 1101(2) = 11111(2) 		(OBS: Colocar do mesmo tamanho, primeiro)
+b.) 101,0111(2) - 10,11(2) = 1010,0111(2) 	(OBS.: Alinhar as vírgulas, primeiro, antes de operar)
+c.) 231(4) - 132(4) = 1033(4)
+d.) 513(8) - 173(8) = 1320(8)
+e.) 8B3(16) - C4F(16) = 110001100100(16)
+
+
+05.) Executar as operações abaixo,
+armazenar seus dados e resultados em registradores de 8 bits,
+mostrar os valores resultantes em binário, e usar complemento de 2 nas subtrações:
+
+05a.) manualmente
+a.) 101011(2) – 1110(2) = 011101(2)
+b.) 101,1011(2) – 2,4(8) = 011,1001(2)
+c.) 312(4) – D(16) = 100101(2)
+d.) C3(16) – 1011001(2) = 01101010(2)
+e.) 51(10) – 2D(16) = 00010110(2)

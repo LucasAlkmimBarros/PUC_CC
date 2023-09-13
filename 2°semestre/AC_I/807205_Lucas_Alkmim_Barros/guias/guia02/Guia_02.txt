@@ -1,0 +1,59 @@
+Lucas Alkmim Barros - 807205
+
+01.) Fazer as conversões entre as bases indicadas:
+
+01a.) manualmente
+a.) 0,01101(2)  = 0,40625(10)
+b.) 0,10011(2)  = 0,59375(10)
+c.) 0,10101(2)  = 0.65625(10)
+d.) 1,11001(2)  = 1,78125(10)
+e.) 11,11011(2) = 3,84375(10)
+
+
+02.) Fazer as conversões entre as bases indicadas:
+
+02a.) manualmente
+a.) 0,75000(10)   = 0,11(2)
+b.) 1,37500 (10)  = 1,011(2)
+c.) 2,62500 (10)  = 10,101(2)
+d.) 6,87500 (10)  = 110,111(2)
+e.) 11,03125 (10) = 1011,00001(2)
+
+
+03.) Fazer as conversões de base entre as bases indicadas:
+DICAS: Para uma mesma base ou usar agrupamentos ou desagrupamentos.
+ Para conferir, compare os valores decimais equivalentes.
+ Completar com zeros, se necessário
+
+03a.) manualmente
+a.) 0,010010(2)  = 0,102(4)
+b.) 0,100101(2)  = 0,45(8)
+c.) 0,101011(2)  = 0,AE(16)
+d.) 1,110001(2)  = 1,63(8)
+e.) 1110,1001(2) = E,9(16)
+
+
+04.) Fazer as conversões de base entre as bases indicadas:
+DICAS: Para uma mesma base ou usar agrupamentos ou desagrupamentos.
+ Para conferir, compare os valores decimais equivalentes.
+
+04a.) manualmente
+a.) 0,312(4) = 0,010010(2)
+b.) 0,3E7(16) = 0,1433(4)
+c.) 0,751(8) = 0,111101(2)
+d.) 7,231(8) = 111,010001(2) = 110,2022(4) 
+e.) A,B52(16) = 1010,101100010(2) =  222,5242(4) 
+
+
+05.) Fazer as operações indicadas:	
+
+05a.) manualmente
+a.) 101,01(2) + 11,111(2) = 1000,101(2)
+b.) 1001,111(2) - 10,11(2) = 110,001(2) 
+c.) 100,101(2) * 11,11(2) = 1010000,0111(2) 
+d.) 10110,01(2) / 10,011(2) = 1010,11(2)
+e.) 1101101(2) % 1011(2) = 101(2) 
+
+
+
+

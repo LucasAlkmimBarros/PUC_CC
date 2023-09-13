@@ -1,0 +1,5 @@
+QUESTÃO 10
+
+Q: O QUE O MÉTODO ABAIXO MOSTRA NA TELA?
+
+R: Na medida em que as variáveis o b e o s vão voltar a suas origens, já o i e o l vão mostrar negativos(overflow)

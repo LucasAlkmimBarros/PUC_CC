@@ -1,0 +1,5 @@
+QUESTAO 21
+
+Q: POR QUE O CODIGO ABAIXO IMPRIME 2,1,0,0,1,2 ?
+
+R:Por que no final a função volta de onde parou (neste caso foi no if), e imprime novamente o valor de i.

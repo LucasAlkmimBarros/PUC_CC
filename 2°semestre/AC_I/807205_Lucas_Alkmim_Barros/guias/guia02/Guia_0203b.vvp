@@ -1,0 +1,40 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000025cdd212ad0 .scope module, "Guia_0203b" "Guia_0203b" 2 5;
+ .timescale 0 0;
+v0000025cdd3080a0_0 .var "b", 7 0;
+v0000025cdd30dac0_0 .var/real "x", 0 0;
+S_0000025cdd212c60 .scope begin, "main" "main" 2 10, 2 10 0, S_0000025cdd212ad0;
+ .timescale 0 0;
+    .scope S_0000025cdd212ad0;
+T_0 ;
+    %pushi/real 0, 4065; load=0.00000
+    %store/real v0000025cdd30dac0_0;
+    %pushi/vec4 72, 0, 8;
+    %store/vec4 v0000025cdd3080a0_0, 0, 8;
+    %end;
+    .thread T_0;
+    .scope S_0000025cdd212ad0;
+T_1 ;
+    %fork t_1, S_0000025cdd212c60;
+    %jmp t_0;
+    .scope S_0000025cdd212c60;
+t_1 ;
+    %vpi_call 2 11 "$display", "b = 0.%8b = 0.%x%x (16) = 0.%o%o%o (8)", v0000025cdd3080a0_0, &PV<v0000025cdd3080a0_0, 4, 4>, &PV<v0000025cdd3080a0_0, 0, 4>, &PV<v0000025cdd3080a0_0, 6, 2>, &PV<v0000025cdd3080a0_0, 3, 3>, &PV<v0000025cdd3080a0_0, 0, 3> {0 0 0};
+    %end;
+    .scope S_0000025cdd212ad0;
+t_0 %join;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0203b.v";

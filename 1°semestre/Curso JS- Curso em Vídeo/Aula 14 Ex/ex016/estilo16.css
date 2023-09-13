@@ -1,0 +1,38 @@
+body{
+    background-color: rgb(74, 74, 121);
+    font: normal 15pt Arial;
+}
+
+header{
+    text-align: center;
+    margin-top: 100px;
+    color: white;
+}
+
+section{
+    background-color: white;
+    width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39) ;
+}
+
+footer{
+    color: white;
+    text-align: center;
+
+font-style: italic;}
+
+input{
+    margin: 8px auto;
+    width: 50%;
+}
+
+#resp{
+    margin-top: 10px;
+}
+
+#btnContar{
+    width: 15%;
+}

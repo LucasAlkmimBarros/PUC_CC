@@ -1,0 +1,13 @@
+QUESTAO 35
+
+Q: Seja a classe Lixão abaixo e a Funcionário do exemplo
+anterior, faça o quadro de memória para o código abaixo
+
+R:
+f1 -> 
+
+
+f1 -> [   ]
+
+
+f1 -> ["", 5]

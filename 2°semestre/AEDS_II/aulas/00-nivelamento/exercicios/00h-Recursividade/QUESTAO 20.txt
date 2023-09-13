@@ -1,0 +1,12 @@
+QUESTAO 20 
+
+Q: IDENTIFIQUE AS CHAMADAS RECURSIVAS E FUNCOES DE PARADA
+
+R:
+Chamadas:
+-resp = n* fat(n-1);
+-resp = fib(n-1) + fib(n-2)
+
+Paradas:
+-n == 1;
+-n == 0 e n == 1;

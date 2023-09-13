@@ -1,0 +1,47 @@
+/* altera a cor de fundo do corpo da página */
+body {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  
+  /* estiliza o cabeçalho principal da página */
+  h1 , h2{
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* estiliza os parágrafos do corpo da página */
+  p {
+    font-size: 18px;
+    font-family: Georgia, serif;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    
+  }
+  
+  /* estiliza as listas com marcadores */
+  ul {
+    list-style: disc;
+    margin: 0 auto;
+  }
+  
+  /* estiliza os links */
+  a {
+    color: #337ab7;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  a:hover {
+    color: #23527c;
+  }
+
+  ul{
+    list-style: none;
+    margin: 0 auto;
+  }
+

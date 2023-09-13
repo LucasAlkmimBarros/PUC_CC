@@ -1,0 +1,5 @@
+QUESTAO 11
+
+Q:PORQUE O CÓDIGO ABAIXO IMPRIME [46 - 11]?
+
+R: Pois "<< 1" vai multiplicar por 2 uma vez, e, ">> 1" vai dividir por 2 1 vez (e como y é um inteiro ele fica como 11)

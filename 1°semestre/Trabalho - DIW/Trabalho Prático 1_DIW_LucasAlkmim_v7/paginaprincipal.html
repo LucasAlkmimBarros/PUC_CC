@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    
+    <script src="https://kit.fontawesome.com/5b95dff2f0.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="paginaprincipal.js"></script>
+    <link rel="stylesheet" href="paginaprincipal.css">
+    
+    <title>LCS e-commerce</title>
+    
+    <!-- Menu -->
+    <header class="header">
+        <img src="img/imagemLogo.png" class="logoloja">
+        <nav>
+          <input type="checkbox" id="menuToggle">
+          <label for="menuToggle" class="menu-icon">
+            <i class="fa-sharp fa-solid fa-bars"></i>
+            <i class="fa fa-times-circle"></i>
+          </label>
+          <ul class="menu">
+            <li><a href="#">Registrar</a></li>
+            <li><a href="#">Logar</a></li>
+            <li><a href="#">Minha Conta</a></li>
+            <li><a href="#">Rastrear Pedido</a></li>
+          </ul>
+        </nav>
+        <!-- Fim Menu -->
+    
+        <!-- Caixa de pesquisa-->
+        <form id="formBusca" action="pesquisa.html" target = "_blank">
+          <div class="divBusca">
+            <input type="text" id="txtBusca" name="q" placeholder="Buscar..."/>
+            <button type="submit" id="btnBusca"><img src="img/lupacinza.png" alt="Buscar"/></button>
+          </div>
+        </form>
+    
+      </header>
+    </head>
+
+
+    
+<body>
+
+  <!-- Carossel -->
+  <div class="conteiner">
+
+    <div class="swiper">
+    
+            <div class="swiper-wrapper">
+              
+              <div class="swiper-slide"><img src="img/imagemCar1.png"></div>
+              <div class="swiper-slide"><img src="img/imagemCar2.png"></div>
+              <div class="swiper-slide"><img src="img/imagemCar3.png"></div>
+              <div class="swiper-slide"><img src="img/imagemCar4.png"></div>
+
+          
+          
+        
+            </div>
+    
+            <div class="swiper-pagination"></div>
+      
+            
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> 
+            
+        
+          </div>
+       
+    </div>
+    <!-- Fim do Carossel -->
+    
+    
+    <div class="botoesprodutos">
+      <!-- Botões para mostrar produtos das subcategorias -->
+      <div>
+          <button onclick="carregarProdutosOculos()" class = "botaoclicavel" >Mostrar Óculos</button>
+          <button onclick="carregarProdutosBones()" class = "botaoclicavel" >Mostrar Bonés</button>
+          <button onclick="carregarProdutosJoias()" class = "botaoclicavel" >Mostrar Joias</button>
+      </div>
+        
+      <!-- Fim Botões -->  
+    </div>
+    
+
+    <!-- Produtos -->
+    
+    <section class="card">
+      
+      <div class="divgrande" id="cardsprodutos" class="cardsprodutos">
+        
+            
+
+        
+    </div>
+        
+        
+    </section>
+    
+    <!-- Fim Produtos -->
+    
+    <!--Bem Avaliados-->
+    
+    <aside id="review" class="review">
+
+        <div class="review1">
+            <h1 class="avaliados">Melhores Avaliados</h1>
+            <img src="img/oculos_1.webp" alt="">
+            <p>Óculos Clubmaster Classic<br> <a href="#">820,00
+            </a><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+        </div>
+
+        <div class="review2">
+            <img src="img/oculos_2.avif" alt="">
+            <p>Óculos Original Wayfarer Classic<br> <a href="#">1100,00
+            </a><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+        </div>
+
+        <!--Fim Bem Avaliados-->
+
+        <div class="clear"></div>
+
+        <!--Newsletter-->
+
+        <div class="newsletter">
+            <h1>Receber notícias</h1>
+            <hr>
+            <p>Entre com seu email para receber noticias atualizadas!</p>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <br>
+                <button type="submit">Se inscreva agora</button>
+            </form>
+        </div>
+
+        <!--Fim Newsletter-->
+
+    </aside>
+    
+
+    <!--Rodapé-->
+
+    <footer class="footer">
+        <div class="column">
+          <h4>Redes Sociais</h4>
+          <ul>
+            <li><i class="fa-brands fa-instagram"> @LCS-eCommerce</i></li>
+            <li><i class="fa-brands fa-twitter"> @LCS-eCommerce</i></li>
+            <li><i class="fa-brands fa-tiktok"> @LCS-eCommerce</i></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>Métodos de Pagamento</h4>
+          <ul>
+            <li><i class="fa-solid fa-credit-card"> Cartoes de credito</i></li>
+            <li><i class="fa-solid fa-money-bill"> Boleto bancario</i></li>
+            <li><i class="fa-solid fa-wallet"> Pix</i></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>Contatos</h4>
+          <ul>
+            <li><i>Nome: Lucas Alkmim Barros</i></li>
+            <li>lucas.alkmim@sga.pucminas.br</li>
+            <li>Matrícula: 807205</li>
+            <li>Ciência da Computação</li>
+            <li>Unidade: Coração Eucarístico</li>
+          </ul>
+      </footer>
+      <footer class="sub-rodapé">
+        <div>
+          @Copyright-todos os direitos reservados 2023
+    
+        </div>
+      </footer>
+    
+
+    <!--Fim Rodapé-->
+
+    
+    
+    <!--JS CARROSSEL-->
+    <script>
+    const swiper = new Swiper('.swiper', {
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+    },
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+});
+
+
+    </script>
+
+    <!--Fim JS CARROSSEL-->
+
+</body>
+
+
+
+
+</html>

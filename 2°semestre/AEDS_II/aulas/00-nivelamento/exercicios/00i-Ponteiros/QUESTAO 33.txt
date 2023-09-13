@@ -1,0 +1,9 @@
+QUESTAO 33
+
+Q: Um estudante de Algoritmos e Estruturas de Dados (em JAVA) implementou uma
+classe Hora, cujo construtor recebe e armazena uma hora, minuto e segundo. O que
+acontece se a classe X abaixo for colocada na mesma pasta que a classe Hora?
+
+R:
+
+(B) Escreve na tela "Diferentes!".

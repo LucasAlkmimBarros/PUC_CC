@@ -1,0 +1,13 @@
+QUESTAO 32
+
+Q: MOSTRE O QUADRO DE MEMÓRIA DO PROGRAMA ABAIXO
+
+R:
+
+C1 -> (H100)[1,aa]
+
+vet[1]->(H200)[1,aa]
+vet[2]->(H204)[1,aa]
+vet[3]->(H208)[1,aa]
+vet[4]->(H212)[1,aa]
+vet[5]->(H216)[1,aa]

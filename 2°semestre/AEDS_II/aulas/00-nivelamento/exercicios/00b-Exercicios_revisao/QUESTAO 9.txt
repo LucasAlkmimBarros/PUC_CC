@@ -1,0 +1,5 @@
+QUESTAO 9
+
+Q: QUAL A DIFERENÇA ENTRE OS DOIS MÉTODOS ABAIXO
+
+R: A diferença é que o primeiro envia o i e depois decrementa ele, enquanto o segundo, decrementa ele, e, depois envia o valor(já diminuído)

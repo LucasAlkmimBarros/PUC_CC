@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <title>Isaac Newtow</title>
+</head>
+
+<body>
+  <div id="divNewton">
+  <h1 id="tituloNewton">Quem foi Isaac Newton?</h1>
+  <p>Isaac Newton foi um cientista, matemático e físico inglês que viveu entre 1643 e 1727. Ele é reconhecido como uma das figuras mais importantes da história da ciência. Newton fez contribuições significativas em várias áreas, incluindo física, matemática e astronomia.</p>
+
+  <h2>Contribuições para a ciência</h2>
+    <p>
+    Uma de suas maiores realizações foi a formulação das três leis do movimento, conhecidas como as Leis de Newton.<br><br>- A primeira lei, conhecida como a lei da inércia, estabelece que um objeto em repouso permanecerá em repouso e um objeto em movimento continuará em movimento com velocidade constante, a menos que uma força externa atue sobre ele.<br><br>- A segunda lei relaciona força, massa e aceleração, afirmando que a aceleração de um objeto é diretamente proporcional à força aplicada e inversamente proporcional à sua massa.<br><br>- A terceira lei afirma que para cada ação, há uma reação igual e oposta.
+
+<br><br>Além das leis do movimento, Newton também desenvolveu a lei da gravitação universal. Ele propôs que todos os objetos com massa se atraem mutuamente por meio de uma força chamada gravidade. Essa lei descreve a relação entre a força gravitacional, a massa dos objetos e a distância entre eles. A lei da gravitação universal é fundamental para entender o movimento dos planetas e corpos celestes.<br>
+
+<br>Newton também fez avanços significativos no campo da óptica. Ele desenvolveu a teoria da cor e a teoria das cores da luz. Newton demonstrou que a luz branca é composta por várias cores e que pode ser separada em um espectro de cores visíveis usando um prisma. Ele também inventou o primeiro telescópio refletor, que utiliza espelhos em vez de lentes para focar a luz.
+  </p>
+
+  <h2>Vídeos Sobre:</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/B2u8FYE9fWk" title="Isaac Newton Biography"></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/5AEZCsEAopY" title="Isaac Newton and the Laws of Motion"></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/agpTui0scXw" title="Isaac Newton and the Scientific Revolution"></iframe>
+  </div>
+
+  <h2>Conteúdo extra</h2>
+  <p>Escaneie o QR abaixo para ter acesso a um quiz sobre Isaaac Newton:<br><br><br></p>
+  <img src="qrJogoNewton.png" alt="">
+  <style>
+body {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  
+  h1 , h2{
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+  }
+  
+  p {
+    font-size: 18px;
+    font-family: Georgia, serif;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    margin: 0% 15% 0% 15%;
+ 
+  }
+  
+  ul{
+    list-style: none;
+    margin: 0 auto;
+  }
+  </style>
+  
+  <script>
+window.onload = function() {
+  var element = document.getElementById("tituloNewton");
+
+  anime({
+    targets: element,
+    rotate: '1turn', 
+    scale: [0, 1], 
+    duration: 2000, 
+    easing: 'easeInOutSine', 
+  });
+};
+  </script>
+</body>
+
+</html>

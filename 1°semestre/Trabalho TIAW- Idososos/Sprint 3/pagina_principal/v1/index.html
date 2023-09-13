@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>Tela inicial</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/c84e2bf84f.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width">
+        <script src="script.js"></script>
+      </head>
+ <body>
+    
+ <ul>
+    <li><img src="img/idoSOS.png" alt=""></li>
+    <li><a href="#">Sobre Nós</a></li>
+    <li><a href="#">Contato</a></li>
+    <li><a href="#">Login</a></li>
+    <li><a href="#">Minha Conta</a></li>
+ </ul>
+
+ <div class="conteiner_busca">
+    <input type="text" class="input_busca" id="inpt_busca">
+    <img src="img/chat.png" alt="" id="img_chat">
+  </div>
+  
+
+    <a href="https://voluble-kangaroo-d00d5a.netlify.app"/><img src="img/calend.png" alt="Calendário" class="calendario" id="imagem"></a>
+ <script>
+
+    var imagem = document.getElementById("imagem");
+    imagem.addEventListener("mouseover", function(){
+        imagem.src = "img/calend2.png";
+    });
+    imagem.addEventListener("mouseout", function(){
+        imagem.src = "img/calend.png";
+    });
+    </script>
+    
+</body>
+</html>

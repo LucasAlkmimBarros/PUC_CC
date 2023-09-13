@@ -1,0 +1,586 @@
+/*Definições Gerais - Início*/
+html{
+    height: 100%;
+}
+
+head, body, ul, li, p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+/*Definições Gerais - Fim*/
+
+
+/*Definições do Header - Início*/
+
+/* CSS Cabeçalho - Início */
+
+.header a{
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.header{
+    background-image: linear-gradient(to bottom, #e79090, rgb(224, 224, 224));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    z-index: 100;
+}
+
+.menu{
+    display: flex;
+    background: #72727200;
+    
+}
+
+.menu li{
+    list-style: none;
+    margin-left: 50px;
+    background: #72727200;
+    font-size: 1.3rem;
+}
+
+.logoloja{
+    width: 100px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
+/* CSS Cabeçalho - Fim */
+
+
+/*CSS Caixa de Pesquisa - Início*/
+
+.divBusca{
+    background-color: white;
+    border-radius:25px;
+    width:300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+  }
+ 
+  #txtBusca{
+    float:left;
+    background-color:transparent;
+    padding-left:20px;
+    font-style:italic;
+    font-size:18px;
+    border:none;
+    height:32px;
+    width:250px;
+
+  }
+
+  #txtBusca::placeholder {
+    color: #727272;
+  }
+
+  #btnBusca {
+    width: 40px;
+    vertical-align: middle;
+    border:none;
+    background-color:white;
+    border-radius: 25px;
+
+}
+
+/*CSS Caixa de Pesquisa - Fim*/
+
+
+/*Definições Menu - Início*/
+
+#menuToggle{
+    display: none;
+    
+  }
+  
+  .menu-icon{
+    display: none;
+  }
+  
+/*Definições Menu - Fim*/  
+
+
+/*----------CSS Body - Início----------*/
+
+body{
+    background-color: rgb(224, 224, 224);
+    
+}
+
+
+/* CSS Carousel - Início */
+
+.conteiner{
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    } 
+    
+    .swiper{
+      width: 80%;
+      height: fit-content;
+      z-index: 1  ;
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+    
+    .swiper-slide img{
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-top: 10px;
+      height: 450px;
+      border-radius: 10px;
+      border: 10px;
+    
+    }
+    
+    .swiper .swiper-button-prev, .swiper .swiper-button-next{
+      color: #727272;
+    }
+    
+    .swiper .swiper-pagination-bullet-active{
+      background: #727272 ;
+    }
+    
+/* CSS Carousel - Fim */
+
+
+/*CSS Botões Produtos - Início*/
+
+.botoesprodutos{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.botaoclicavel{
+    width: 150px;
+    height: 50px;
+    background-image: linear-gradient(to bottom,#e79090, rgb(224, 224, 224));
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right: 30px;
+    box-shadow: 0px 0px 10px 0px rgba(138, 65, 65, 0.75);
+    cursor: pointer;
+}
+
+
+
+
+/* CSS Painel de Cards - Início */
+
+.divgrande{
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1%;
+}
+.card{
+    
+    
+    grid-gap: 1%;
+    margin: 0 auto;
+    width: 75%;
+    text-align: center;
+    float: left; 
+}
+
+
+
+.card a{
+  text-decoration: none;
+  color:#727272;
+}
+
+.cardtenis{
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.produto{
+    border-radius: 10px;
+    margin: 0 auto;
+    background: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: solid 1px rgba(138, 65, 65, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(165, 96, 96, 0.75);
+
+}
+
+.imgproduto{
+  border-radius: 10px;
+  width: 80%;
+  border: solid 1px rgba(138, 65, 65, 0.75);
+  margin: 0 auto; 
+  margin-top: 10px;
+}
+
+.botaoproduto{
+  width: 50%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  background-color: #e79090;
+  border-radius: 10px;
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(165, 96, 96, 0.75);
+
+}
+
+.nomeproduto{
+  color: #705454;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+/* CSS Painel de Cards - Fim */
+
+
+/* CSS Most Reviewed - Início */
+aside {
+    width: 14%;
+    padding: 4%;
+    float: right;
+    text-align: center;
+    display: grid;
+    background-color: #f4f4f4;
+    margin: 3px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(138, 65, 65, 0.75);
+
+  }
+  
+  aside h1 {
+    color: #fff
+  }
+  
+  .review a{
+    text-decoration: none;
+    color: #705454;
+  }
+  
+  .avaliados{
+    color: #ffffff;
+    background-color: rgba(49, 41, 41, 0.486);
+    border-radius: 10px;
+    border: 1px solid #727272;
+  }
+  
+  /* CSS Most Reviewed - Fim */
+
+
+  /*CSS Newsletter - Início*/
+
+  .clear{
+    clear: both;
+  }
+
+  .newsletter{
+    background: #727272;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 330px;
+    border-radius: 10px;
+    color: black;
+    padding: 4%;
+    box-sizing: border-box;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  }
+
+  .newsletter hr{
+    width: 70px;
+    height: 3px;
+    margin: 30px auto;
+    border: 0;
+    background: rgba(255,255,255,0.5);
+  
+  }
+  
+  .newsletter p{
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255,255,255,0.03);
+    margin-bottom: 30px;
+  }
+  
+  .newsletter input{
+    border-radius: 3px;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 55px;
+    border: 0px;
+    padding: 0 20px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 36px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 16px;
+  
+  }
+  
+  ::placeholder{
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .newsletter button{
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 3px;
+    height: 50px;
+    background-color: transparent;
+    color:#f9f9ff;
+    padding: 0px 28px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 16px;
+  }
+  
+  .newsletter button:hover{
+    background-color: rgba(0,0,0,0.4);
+    border-color: rgba(0,0,0,0.4);
+  }
+  
+  /*CSS Newsletter - Fim*/
+
+
+  /* CSS Rodapé - Início */
+.footer{
+    background-image: linear-gradient(to bottom, rgb(224, 224, 224), #e79090);
+    display: flex;
+    color: white;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    clear: both;
+    padding-top: 50px;
+    
+  }
+  
+  #redesscoiais{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .footer li{
+    padding: 5px;
+    list-style-type: none;
+   
+  }
+  
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sub-rodapé{
+    text-align: center;
+    background: #e79090;
+    color: white;
+  }
+/* CSS Rodapé - Fim */
+
+
+/*----------CSS Body - Fim----------*/
+
+/*----------CSS Mobile - Início----------*/
+
+/* CSS Menu Mobile -Início*/
+@media screen and (max-width: 768px){
+
+  .logoloja{
+    display: none;
+  }
+  .header{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+  }
+
+  .header nav{
+    display: absolute;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .menu{
+    display: flex;
+    position: fixed;
+    flex-wrap: wrap;
+    align-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 0%;
+    background: rgba(0,0,0,0.7);
+    overflow: hidden;
+
+    -webkit-transition: height 0.3;
+    -moz-transition: height 0.3;
+    -o-transition: height 0.3;
+    transition: height 0.3s;
+  }
+
+  .menu li{
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    background-color: transparent;
+  }
+
+  .menu li a{
+    display: block;
+    text-align: center;
+    width: 100%;
+
+  }
+
+  .menu-icon{
+    display: block;
+    color: #000000;
+    width: 50px;
+    height: inherit;
+    position: absolute;
+    top: 15px;
+    /* CSS Cabeçalho - Fim */
+    right: 0px;
+    line-height: 60px;
+    z-index: 999;
+  }
+
+  .menu-icon i{
+    font-size: 1.7em;
+  }
+
+  #menuToggle:checked ~ label i:nth-child(2){
+    display: block;
+  }
+
+  #menuToggle:checked ~ label i:first-child{
+    display: none;
+  }
+
+  #menuToggle:not(checked) ~ label i:first-child{
+    display: block; 
+  }
+
+  #menuToggle:not(checked) ~ label i:nth-child(2){
+    display: none; 
+  }
+
+  #menuToggle:checked ~ ul{
+    height: 100%;
+  }
+
+  .swiper{
+    height: fit-content;
+    width: 80%;
+  }
+
+  .swiper-slide img{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+    height: 300px;
+  }
+
+  
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next, .swiper-button-prev {
+    top: 30%;
+    transform: translateY(150%);
+    margin: -10px;
+  }
+
+  .botaoclicavel{
+    margin-top: 10px;
+    margin-left: 30%;
+  }
+
+
+
+  .review{
+    max-width: 100%;
+    width: 80%;
+    float: left;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 15%;
+    
+  }
+  
+  .reviewed-item {
+    flex-basis: 50%;
+    flex-direction: row;
+  }
+
+  .card{
+    min-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  html, body{
+    overflow-x: hidden;
+    margin: 5% auto;
+  }
+
+  .conteiner{
+    margin-top: 18%;
+  }
+
+  .produto{
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+
+
+
+    /*----------CSS Mobile - Fim----------*/

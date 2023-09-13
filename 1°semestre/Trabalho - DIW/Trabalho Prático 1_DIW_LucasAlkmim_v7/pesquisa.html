@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+body{
+    background-color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.produto{
+border-radius: 10px;
+margin: 0 auto;
+background: white;
+margin-bottom: 10px;
+margin-top: 10px;
+border: solid 1px #727272;
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+
+}
+
+.imgproduto{
+  border-radius: 10px;
+  width: 10%;
+  border: solid 1px #727272;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.botaoproduto{
+  width: 100px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  background-color: darkslategray;
+  border-radius: 10px;
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+
+}
+
+.nomeproduto{
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <h1>Resultados da Pesquisa</h1>
+  
+    <div id="resultadoPesquisa"></div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const query = urlParams.get('q');
+          
+          if (query) {
+            pesquisarPorCategoria(query);
+          } else {
+            pesquisarPorCategoria('all');
+          }
+        });
+      
+        function pesquisarPorCategoria(palavraChave) {
+  fetch(`https://diwserver.vps.webdock.cloud/products/search?query=${encodeURIComponent(palavraChave)}`)
+    .then(response => response.json())
+    .then(json => {
+      const produtos = json;
+      const container = document.getElementById('resultadoPesquisa');
+
+      if (produtos.length === 0) {
+        container.innerHTML = '<p>Nenhum produto encontrado.</p>';
+      } else {
+        container.innerHTML = '';
+
+        produtos.forEach(produto => {
+          container.innerHTML += `
+            <a class="produto" href="detalhes.html?id=${produto.id}" target="_blank">
+              <img src="${produto.image}" alt="${produto.title}" class="imgproduto">
+              <h3 class="nomeproduto">${produto.title}</h3>
+              <p class="nomeproduto">${produto.articleType}</p>
+              <p class="nomeproduto">Preço: R$${produto.price}</p>
+              <button onclick="adicionarAoCarrinho(${produto.id})" class="botaoproduto">Detalhes</button>
+            </a></br>
+          `;
+        });
+      }
+    })
+    .catch(error => console.log(error));
+}
+
+
+      </script>
+      
+  </body>
+  
+</html>

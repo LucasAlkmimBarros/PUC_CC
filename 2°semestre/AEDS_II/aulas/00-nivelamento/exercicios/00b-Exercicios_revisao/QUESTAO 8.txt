@@ -1,0 +1,5 @@
+QUESTAO 8
+
+Q: QUAL A SUA OPINIÃO SOBRE O CÓDIGO REAL ABAIXO?
+
+R: Por mais que tenha sido um pouco complicado de entender no início, com uma leitura mais focada e atenta o código fica bem simples. Este serve para determinar a unidade de algum objeto, e, caso esse objeto seja "null, pega o de uma classe parente.

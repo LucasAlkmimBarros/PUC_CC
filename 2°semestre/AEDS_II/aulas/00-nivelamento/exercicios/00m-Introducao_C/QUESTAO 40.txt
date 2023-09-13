@@ -1,0 +1,10 @@
+QUESTAO 40
+
+Q:FAÇA O QUADROD DE MEMORIA
+
+R: 
+Iteração 8:
+M: [0.0][0.0][0.0]
+   [0.0][0.0][0.0]
+   [0.0][0.0][0.0]
+p: Apontando para o último elemento (0.0)

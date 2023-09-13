@@ -1,0 +1,34 @@
+
+  .fs-1 {
+    font-family: Brush Script MT;
+  }
+   body {
+    background-image: url('/image/wave_background.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* altura da navbar + margens */
+}
+
+.navbar {
+    border-bottom: gray;
+  }
+  .fs-2 {
+    font-family: Cooper Black;
+  }
+ 
+  .fs-4 {
+    font-family: Comic Sans MS;
+  }
+
+  .fs-5 {
+    font-family: Broadway;
+  }
+  .divider {
+    width: 5px; /* Ajuste a espessura da barra aqui */
+    background-color: white;
+    height: calc(100% - 20px); /* Ajuste a altura da barra aqui */
+    margin-top: 10px; /* Ajuste a margem superior da barra aqui */
+    margin-bottom: 10px; /* Ajuste a margem inferior da barra aqui */
+    border-radius: 5px; /* Ajuste o raio do arredondamento aqui */
+  }
+

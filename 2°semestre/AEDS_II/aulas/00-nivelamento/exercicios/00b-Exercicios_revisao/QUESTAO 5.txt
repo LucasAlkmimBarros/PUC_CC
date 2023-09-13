@@ -1,0 +1,5 @@
+QUESTAO 5
+
+Q:O QUE O CODIGO ABAIXO FAZ?
+
+R: Confere se o parâmetro c é uma vogal(maiúscula e minúscula)

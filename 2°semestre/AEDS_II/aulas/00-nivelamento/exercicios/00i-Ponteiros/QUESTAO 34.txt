@@ -1,0 +1,6 @@
+QUESTAO 34
+
+Q:Seja a classe X abaixo e a Animal implementada e não mostrada, avalie as afirmações listadas a seguir.
+
+R:
+A(I e II)
