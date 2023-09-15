@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Estoque de Carros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #container {
+            margin: 20px;
+        }
+
+        #car-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #car-list {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #car-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Controle de Estoque de Carros</h1>
+    </header>
+    <div id="container">
+        <div id="car-form">
+            <h2>Inserir Carro</h2>
+            <form id="car-form">
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" placeholder="Ex: Sedan" required><br>
+
+                <label for="placa">Placa:</label>
+                <input type="text" id="placa" placeholder="Ex: ABC-1234" required><br>
+
+                <label for="ano">Ano:</label>
+                <input type="number" id="ano" placeholder="Ex: 2023" required><br>
+
+                <label for="cor">Cor:</label>
+                <input type="text" id="cor" placeholder="Ex: Vermelho" required><br>
+
+                <button id="btn-inserir">Inserir</button>
+            </form>
+        </div>
+
+        <div id="car-actions">
+            <div>
+                <h2>Detalhar Carro</h2>
+                <input type="number" id="detalhar-id" placeholder="ID do Carro">
+                <button id="btn-detalhar">Detalhar</button>
+            </div>
+            <div>
+                <h2>Remover Carro</h2>
+                <input type="number" id="remover-id" placeholder="ID do Carro">
+                <button id="btn-remover">Remover</button>
+            </div>
+            <div>
+                <h2>Listar Carros</h2>
+                <button id="btn-listar">Listar</button>
+            </div>
+        </div>
+
+        <div id="car-list">
+            <h2>Lista de Carros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Ano</th>
+                        <th>Cor</th>
+                    </tr>
+                </thead>
+                <tbody id="carros-tbody">
+                    <!-- Os carros serão exibidos aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
