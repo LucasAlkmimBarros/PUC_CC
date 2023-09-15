@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1683740013 source:c:\users\user\onedrive\puc\puc - listas aeds i\main.c
-	<stdio.h>
-	<stdlib.h>
-	<locale.h>
-	<ctype.h>
-	<stdbool.h>
-	<math.h>
-

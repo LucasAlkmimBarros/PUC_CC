@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdoS.O.S</title>
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="myaccount.css">
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar top -->
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Minha Conta</h1>
+        </div>
+
+        <!-- Navbar -->
+
+        <ul>
+            <li>
+                <a class="backbtn" href="/principal/index.html">IdoS.O.S</a>
+
+        </script>
+            </li>           
+        </ul>
+        <!-- End -->
+    </div>
+    <!-- End -->
+
+    <!-- Sidenav -->
+    <div class="sidenav">
+        <div class="profile">
+            <img src="myaccountimg/userimg.png" alt="" width="100" height="100">
+
+            <div class="name" id="d_name">
+                
+            </div>
+            <div class="job" id="d_mail">
+                
+            </div>
+        </div>
+
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="#profile" class="active">Sair</a>
+                <hr align="center">
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+
+    <!-- Main -->
+    <div class="main">
+        <h2>Meus Dados</h2>
+        <div class="card">
+            <div class="card-body">
+                <button id="editbtn"><i class="fa fa-pen fa-xs edit"></i></button>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>:</td>
+                            <td> </td>                            
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Número</td>
+                            <td>:</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Endereço</td>
+                            <td>:</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Profissão</td>
+                            <td>:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Habilidades</td>
+                            <td>:</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>Redes Sociais</h2>
+        <div class="card">
+            <div class="card-body">
+                <div class="social-media">
+                    <button class="botao" onclick="gotolink(this)" value="https://pt-br.facebook.com/">
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                    </button>    
+                    <button class="botao" onclick="gotolink(this)" value="https://twitter.com/home?lang=pt">
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                    </button>
+                    <button class="botao"  onclick="gotolink(this)" value="https://www.instagram.com/">
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                    </button>
+                <script>
+                    function gotolink(link){
+                        console.log(link.value);
+                        location.href = link.value;
+                    };
+                </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+
+    <script src="https://kit.fontawesome.com/bfbfec3ece.js" crossorigin="anonymous"></script>
+    <script src="myaccount.js"></script>
+</body>
+</html>

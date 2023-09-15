@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>IdoS.O.S</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/c84e2bf84f.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width">
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+ <body>
+    
+ <ul>
+    <li><a href="/principal/index.html" id="btnback">IdoS.O.S</a></li>
+    <li><a href="/sobreNos/sobrenos.html">Sobre Nós</a></li>
+    <li><a href="/cadastro/cadastro.html">Login</a></li> 
+    <li><a href="/myaccount/myaccount.html">Minha Conta</a></li>
+ </ul>
+
+
+ <div class="conteiner_busca">
+    <input type="text" class="input_busca" id="inpt_busca" placeholder="   Busque por algo...">
+    <a href="/chat/chat.html" id="btnchat"><i id="img_chat" class="fa-solid fa-comments fa-lg"></i></a>
+  </div>
+  <a href="/search/search.html" ><img src="img/foto_filtro.png" alt="" id="img_filtro"></a>
+  
+
+    <a href="/calendario/calendario.html"/><img src="img/calend.png" alt="Calendário" class="calendario" id="imagem"></a>
+ <script>
+
+    var imagem = document.getElementById("imagem");
+    imagem.addEventListener("mouseover", function(){
+        imagem.src = "img/calend2.png";
+    });
+    imagem.addEventListener("mouseout", function(){
+        imagem.src = "img/calend.png";
+    });
+    </script>
+
+<footer class="footer">
+    <div id="divFooter">
+      <div class="credits">
+      <p class="credit">
+       <i>@Todos os direitos reservados</i></p>
+      <div class="payment">
+        <p class="paymeth">Métodos de Pagamentos</p>
+        <i class="fa-brands fa-cc-paypal" id="paypal"></i>
+        <i class="fa-brands fa-pix" id="pix"></i>
+        <i class="fa-solid fa-credit-card" id="credit"></i>
+      </div>
+      <div class="social">
+        <p class="letsbe">Redes Sociais</p>
+        <a href="#insta" target="_blank" class="fa-brands fa-instagram" id="insta"></a>
+        <a href="#twitter" target="_blank" class="fa-brands fa-twitter" id="twitter"></a>
+        <a href="#email" target="_blank" class="fa-solid fa-envelope" id="email"></a>
+      </div>
+      <div class="contact">
+        <p class="cont">Contato</p>
+        <a href="#+55 49 3382-3126" class="fa-solid fa-phone" id="phone"></a>
+        <a class="num"> +55 49 3382-3126</a>
+      </div>
+      <div class="search">
+        <p class="news">Newletter</p>
+        <i class="fa-solid fa-envelope" id="email" style="color: black;"></i>
+        <input type="text" class="text" placeholder="Escreva seu email aqui...">
+      </div>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+    
+  </div>
+
+  </footer>
+  <script src="https://kit.fontawesome.com/bfbfec3ece.js" crossorigin="anonymous"></script>
+</body>
+</html>

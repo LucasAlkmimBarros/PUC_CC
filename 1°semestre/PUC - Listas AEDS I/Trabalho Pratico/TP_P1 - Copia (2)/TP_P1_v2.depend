@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1687457261 source:c:\users\user\onedrive\puc\puc - listas aeds i\trabalho pratico\tp_p1 - copia (2)\main.cpp
-	<iostream>
-	<string>
-	<locale.h>
-	<stdio.h>
-	<locale>
-

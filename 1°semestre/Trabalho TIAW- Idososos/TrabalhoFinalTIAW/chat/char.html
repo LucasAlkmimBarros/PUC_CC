@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>IdoS.O.S</title>
+        <link rel="stylesheet" href="chat.css" />
+    </head>
+    <body>
+        <a class="backbtn" href="/chat/chat.html">IdoS.O.S</a>
+        <script>
+            function gotolink(link){
+                console.log(link.value);
+                location.href = link.value;
+            };
+        </script>
+        <div class="container">
+            <div id="characterProfile"></div>
+            <div id="forumList"></div>
+            <div id="messageControl">
+                <hr>
+                <p class="digite">Digite sua Mensagem:</p>
+                <p><textarea id="messageBox"></textarea></p>
+                <p><button id="btnSendMessage">Enviar</button></p>
+            </div>
+        </div>
+        <script src="script-forum.js"></script>
+        <script src="https://kit.fontawesome.com/bfbfec3ece.js" crossorigin="anonymous"></script>
+    </body>
+</html>
