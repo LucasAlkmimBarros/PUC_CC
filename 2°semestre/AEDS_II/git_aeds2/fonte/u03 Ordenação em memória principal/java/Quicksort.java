@@ -27,7 +27,11 @@ class Quicksort extends Geracao {
 	 */
    @Override
    public void sort() {
-      quicksort(0, n-1);
+	for(int k = 0; k < n; k++){
+      		MyIO.print(" ["+array[k]+"]");
+      	}
+      	MyIO.println("");
+      	quicksort(0, n-1);
    }
 
 	/**
@@ -46,6 +50,10 @@ class Quicksort extends Geracao {
                 i++;
                 j--;
             }
+	    for(int k = 0; k < n; k++){
+	    MyIO.print(" ["+array[k]+"]");
+	    }
+	    MyIO.println("");
         }
         if (esq < j)  quicksort(esq, j);
         if (i < dir)  quicksort(i, dir);

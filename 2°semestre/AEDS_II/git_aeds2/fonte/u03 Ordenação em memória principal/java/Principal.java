@@ -8,7 +8,7 @@ class Principal {
 
       //Delcaracao de variaveis
       Geracao algoritmo;
-      int n = (args.length < 1) ? 1000 : Integer.parseInt(args[0]);
+      int n = (args.length < 1) ? 13 : Integer.parseInt(args[0]);
       double inicio, fim;
 
 
@@ -16,18 +16,18 @@ class Principal {
       //algoritmo = new Bolha(n);
       //algoritmo = new Countingsort(n);
       //algoritmo = new Heapsort(n);
-      algoritmo = new Insercao(n);
+      //algoritmo = new Insercao(n);
       //algoritmo = new Mergesort(n);
-      //algoritmo = new Quicksort(n);
+      algoritmo = new Quicksort(n);
       //algoritmo = new Radixsort(n);
       //algoritmo = new Selecao(n);
       //algoritmo = new Shellsort(n);
 
 
       //Geracao do conjunto a ser ordenado
-		//algoritmo.aleatorio();
+		algoritmo.aleatorio();
 		//algoritmo.crescente();
-		algoritmo.decrescente();
+		//algoritmo.decrescente();
 
 
       //Mostrar o conjunto a ser ordenado

@@ -1,10 +1,10 @@
 /*
-Guia0701
+Guia0702
 Lucas Alkmim Barros - 807205
 */
 
 
-module Guia_0701;
+module Guia_0702;
 
     reg a, b, chave, s1, s2, sFinal;
 
@@ -16,8 +16,8 @@ module Guia_0701;
         a = 0;
         b = 0;
         chave = 0;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s1;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -25,8 +25,8 @@ module Guia_0701;
         a = 0;
         b = 0;
         chave = 1;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s2;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -34,8 +34,8 @@ module Guia_0701;
         a = 0;
         b = 1;
         chave = 0;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s1;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -43,8 +43,8 @@ module Guia_0701;
         a = 0;
         b = 1;
         chave = 1;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s2;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -52,8 +52,8 @@ module Guia_0701;
         a = 1;
         b = 0;
         chave = 0;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s1;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -61,8 +61,8 @@ module Guia_0701;
         a = 1;
         b = 0;
         chave = 1;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s2;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -70,8 +70,8 @@ module Guia_0701;
         a = 1;
         b = 1;
         chave = 0;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s1;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
@@ -79,8 +79,8 @@ module Guia_0701;
         a = 1;
         b = 1;
         chave = 1;
-        s1 = (a & b);
-        s2 = ~(a & b);
+        s1 = (a | b);
+        s2 = ~(a | b);
         sFinal = s2;
         $display("%d  |  %d  |    %d    |  %d   |  %d   |    %d    |", a, b, chave, s1, s2, sFinal);
 
