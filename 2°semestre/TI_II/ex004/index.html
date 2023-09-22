@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Descrição de Imagem</title>
+    <style>
+        /* Estilizando o corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        /* Estilizando o cabeçalho */
+        h1 {
+            color: #333;
+        }
+
+        /* Estilizando os campos de entrada e rótulos */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+
+        /* Estilizando o botão */
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilizando o resultado */
+        h2 {
+            margin-top: 20px;
+        }
+
+        #resultado {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Estilizando a imagem */
+        #imagem-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Altura da área da imagem */
+            width: 400px; /* Largura da área da imagem */
+            overflow: hidden;
+            margin: 20px auto; /* Centralizar na tela */
+        }
+
+        #imagem {
+            max-width: 100%; /* Imagem com largura máxima */
+            max-height: 100%; /* Imagem com altura máxima */
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Descrição de Imagem</h1>
+    
+    <label for="azureEndpoint">URL do Endpoint da Azure:</label>
+    <input type="text" id="azureEndpoint" placeholder="Insira o Endpoint da Azure"><br><br>
+    
+    <label for="subscriptionKey">Chave da Assinatura:</label>
+    <input type="password" id="subscriptionKey" placeholder="Insira a Chave da Assinatura"><br><br>
+    
+    <label for="imageUrl">URL da Imagem para Análise:</label>
+    <input type="text" id="imageUrl" placeholder="Insira a URL da Imagem"><br><br>
+    
+    <button onclick="descreverImagem()">Descrever Imagem</button><br><br>
+    
+    <h2>Descrição da Imagem:</h2>
+    <div id="resultado"></div>
+
+    <div id="imagem-container">
+        <img id="imagem" src="" alt="Imagem">
+    </div>
+
+    <script>
+        function descreverImagem() {
+            const azureEndpoint = document.getElementById('azureEndpoint').value;
+            const subscriptionKey = document.getElementById('subscriptionKey').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const resultado = document.getElementById('resultado');
+            const imagem = document.getElementById('imagem');
+            const imagemContainer = document.getElementById('imagem-container');
+
+            // Faz uma chamada para a API da Azure para descrever a imagem com idioma em português
+            fetch(`${azureEndpoint}/vision/v3.0/describe?language=pt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Ocp-Apim-Subscription-Key': subscriptionKey
+                },
+                body: JSON.stringify({ url: imageUrl })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const descricao = data.description.captions[0].text;
+                resultado.textContent = descricao;
+                
+                // Exibir a imagem
+                imagem.src = imageUrl;
+                imagem.style.display = 'block'; // Mostrar a imagem
+
+                // Redimensionar a imagem para caber na área da imagem
+                const aspectRatio = imagem.naturalWidth / imagem.naturalHeight;
+                if (aspectRatio > 1) {
+                    imagem.style.width = '100%';
+                    imagem.style.height = 'auto';
+                } else {
+                    imagem.style.width = 'auto';
+                    imagem.style.height = '100%';
+                }
+
+                // Mostrar a área da imagem
+                imagemContainer.style.display = 'flex';
+            })
+            .catch(error => {
+                resultado.textContent = `Erro: ${error.message}`;
+                // Ocultar a área da imagem em caso de erro
+                imagemContainer.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
