@@ -1,3 +1,5 @@
+import java.util.Date;
+
 class Jogador{
 	private int id;
 	private String nome;
@@ -109,10 +111,14 @@ class Jogador{
 }
 
 
-class Q01{
+
+class Q03 {
+
+		public static long now(){
+			return new Date().getTime();
+		}
 		public static void main(String[] args){
 			Jogador[] players = new Jogador[3923];
-			
 			Arq arq = new Arq();
 			String str;
 			arq.openRead("/tmp/players.csv");
@@ -125,11 +131,47 @@ class Q01{
 			arq.close();
 
 			String entrada = MyIO.readLine();
-			int id;
-			while(!(entrada.charAt(0) == 'F' && entrada.charAt(1) == 'I' && entrada.charAt(2) == 'M' && entrada.length() == 3)){
+			int id , pos = 0;
+			Jogador[] playersClone = new Jogador[3923]; //Cria um array de jogadores para armazenar os jogadores que serão pesquisados
+
+			double inicio = now();
+
+			while(!(entrada.equals("FIM"))){
 				id = Integer.parseInt(entrada);
-				players[id].imprimir();
+				playersClone[pos] = new Jogador();
+				playersClone[pos].clone(players[id]); //Clona os jogadores que serão pesquisados
+
+				entrada = MyIO.readLine();
+				pos++;
+			}
+
+			double fim = now();
+
+			entrada = MyIO.readLine();
+			String nomeJogador;
+			int comparacoes = 0;
+
+			while(!(entrada.equals("FIM"))){ 
+				boolean temNome = false;
+				for(int i = 0; i < pos && temNome == false; i++){ //Pesquisa Sequencial
+					nomeJogador = playersClone[i].getNome();
+					
+					comparacoes++;
+					if(nomeJogador.equals(entrada)){
+						temNome = true;			
+					} else {
+						temNome = false;
+					}
+				}
+			
+				if(temNome) MyIO.println("SIM");
+				else MyIO.println("NAO");
+
 				entrada = MyIO.readLine();
 			}
+
+			arq.openWrite("matrícula_sequencial.txt");
+			arq.print("807205\t" + ((fim - inicio)/1000) + "s" + "\t" + comparacoes);
+			arq.close();
 		}
 }
