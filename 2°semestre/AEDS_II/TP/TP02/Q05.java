@@ -112,14 +112,23 @@ class Jogador{
 
 
 
-class Q03 {
+class Q05 {
 
 		public static long now(){
 			return new Date().getTime();
 		}
+
+		public static void swap(Jogador j1, Jogador j2){
+			Jogador tmp;
+			tmp = new Jogador();
+
+			tmp.clone(j1);
+			j1.clone(j2);
+			j2.clone(tmp);
+		}
 		public static void main(String[] args){
-			long inicio = 0;
-			long fim = 0;
+			float inicio = 0;
+			float fim = 0;
 			Jogador[] players = new Jogador[3923];
 			Arq arq = new Arq();
 			String str;
@@ -134,47 +143,52 @@ class Q03 {
 
 			String entrada = MyIO.readLine();
 			int id , pos = 0;
-			Jogador[] playersClone = new Jogador[3923]; //Cria um array de jogadores para armazenar os jogadores que serão pesquisados
+			Jogador[] playersClone = new Jogador[3923]; //Cria um array de jogadores para armazenar os jogadores clonados
 
 
 			while(!(entrada.equals("FIM"))){
 				id = Integer.parseInt(entrada);
 				playersClone[pos] = new Jogador();
-				playersClone[pos].clone(players[id]); //Clona os jogadores que serão pesquisados
+				playersClone[pos].clone(players[id]); //Clona os jogadores
 
 				entrada = MyIO.readLine();
 				pos++;
 			}
 
-			
 
-			entrada = MyIO.readLine();
-			String nomeJogador;
-			int comparacoes = 0;
+			int comp = 0, mov = 0;
+			long tempo, inicioTempo, fimTempo;
 
-			while(!(entrada.equals("FIM"))){ 
-				boolean temNome = false;
-				inicio = now();
-				for(int i = 0; i < pos && temNome == false; i++){ //Pesquisa Sequencial
-					nomeJogador = playersClone[i].getNome();
-					
-					comparacoes++;
-					if(nomeJogador.equals(entrada)){
-						temNome = true;			
-					}
+			//Ordenando por selecao
+			int menor;
+			int resultado;
+
+			inicioTempo = now();
+			for(int i = 0; i < pos-1; i++){
+				menor = i;
+				for(int j = i+1; j < pos; j++){
+
+					resultado = playersClone[menor].getNome().compareTo(playersClone[j].getNome()); /*O método compareTo funciona igual ao strcmp() */
+					comp++;
+					if(resultado > 0){ //Primeiro é maior que segundo
+						menor = j;
+					} 
 				}
-				fim = now();
-			
-				if(temNome) MyIO.println("SIM");
-				else MyIO.println("NAO");
+				mov += 3;
+				swap(playersClone[menor], playersClone[i]);
+			}
+			fimTempo = now();
 
-				entrada = MyIO.readLine();
+			//Imprimindo Jogadores ordenandos
+			for(int i = 0; i < pos; i++){
+				playersClone[i].imprimir();
 			}
 
-			long tempo = (fim - inicio);
+			tempo = fimTempo - inicioTempo;
 
-			arq.openWrite("matricula_sequencial.txt");
-			arq.println("807205\t" + tempo + "\t" + comparacoes);
+			//Registro de Log
+			arq.openWrite("matricula_selecao.txt");
+			arq.println("807205\t" + comp + "\t" + mov + "\t" + tempo);
 			arq.close();
 		}
 }

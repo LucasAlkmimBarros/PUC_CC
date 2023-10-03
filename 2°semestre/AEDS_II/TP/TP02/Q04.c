@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <time.h>
 
 typedef struct { //Struct para guardar os dados dos jogadores
     int id;
@@ -14,7 +16,7 @@ typedef struct { //Struct para guardar os dados dos jogadores
 
 } Jogador;
 
-void imprimir(Jogador *jogador){
+void imprimir(Jogador *jogador){ //Funcao para imprimir os dados dos jogadores
     printf("[%i ## %s ## %i ## %i ## %i ## %s ## %s ## %s]\n", jogador->id, jogador->nome, jogador->altura, jogador->peso, jogador->anoNascimento, jogador->universidade, jogador->cidadeNascimento, jogador->estadoNascimento);
 }
 
@@ -69,7 +71,7 @@ void replaceVirgula(char *str){
     strcpy(str, tmp);
 }
 
-void ler(char str[300], Jogador *jogador){
+void ler(char str[300], Jogador *jogador){ //Funcao para ler os dados dos jogadores
     replaceVirgula(str); /* Como a funcao strtok ignora quando temos vazio, por exemplo ",," ,temos que substituir os valores antes de fazer a separaçao*/
 
     str[strcspn(str, "\n")] = '\0'; // Remove o '\n' no final da string
@@ -140,12 +142,83 @@ void main(){
         i++;
     }
 
+    Jogador playersClone[3923];
+
+
     scanf("%s", n);
+    int j = 0;
     while(strcmp(n, "FIM") != 0){
-        imprimir(&players[atoi(n)]);
+        for(int k = 0; k < i; k++){ // i é a quantidade de jogadores totais
+            if(players[k].id == atoi(n)){
+                clone(&players[k], &playersClone[j]);
+            }
+
+        }
         scanf("%s", n);
+        j++;
+    }
+
+    char nomeJogador[50];
+
+    
+    //Ordenando os jogadores pelo nome para pesquisa binaria
+    for(int k = 0; k < j; k++){
+        for(int l = k + 1; l < j; l++){
+            if(strcmp(playersClone[k].nome, playersClone[l].nome) > 0){
+                Jogador tmp;
+                clone(&playersClone[k], &tmp);
+                clone(&playersClone[l], &playersClone[k]);
+                clone(&tmp, &playersClone[l]);
+            }
+        }
+    }
+
+    bool temNome;
+    int comp = 0;
+    float inicioTempo, fimTempo;
+    getchar();
+    scanf("%99[^\n]", nomeJogador);
+
+    while(strcmp(nomeJogador, "FIM") != 0){
+
+        temNome = false;
+
+        //Pesquisa binaria
+        int inicio = 0, fim = j - 1, meio;
+
+        inicioTempo = clock();
+        while(inicio <= fim){
+            meio = (inicio + fim) / 2;
+
+            comp++;
+            if(strcmp(nomeJogador, playersClone[meio].nome) == 0){ 
+                temNome = true;
+                break;
+
+            } else if(strcmp(nomeJogador, playersClone[meio].nome) < 0){ //Se a primeira string for menor, o resultado é negativo
+                fim = meio - 1;
+                comp++;
+            } 
+
+              else{ //Se a primeira string for maior, o resultado é positivo
+                inicio = meio + 1;
+                comp++;
+              } 
+        }
+        fimTempo = clock();
+
+        if(temNome) printf("SIM\n");
+        else printf("NAO\n");
+
+        getchar();
+        scanf("%99[^\n]", nomeJogador);
+
     }
 
 
+    float tempo = fimTempo - inicioTempo; 
     fclose(arq);
+
+    arq = fopen("matricula_binaria", "w");
+    fprintf(arq, "807205\t %f\t %i", tempo, comp);
 }

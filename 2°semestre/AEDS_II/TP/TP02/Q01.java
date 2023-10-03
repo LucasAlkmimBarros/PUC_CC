@@ -9,7 +9,7 @@ class Jogador{
 	private String estadoNascimento;
 
 
-	Jogador(){
+	Jogador(){ //Construtor vazio
 		id = -1;
 		nome = "";
 		altura = -1;
@@ -20,7 +20,7 @@ class Jogador{
 		estadoNascimento = "";
 	}
 
-	Jogador(int id, String nome, int altura, int peso, String universidade, int anoNascimento, String cidadeNascimento, String estadoNascimento){
+	Jogador(int id, String nome, int altura, int peso, String universidade, int anoNascimento, String cidadeNascimento, String estadoNascimento){ //Construtor com parametros
 		this.id = id;
 		this.nome = nome;
 		this.altura = altura;
@@ -31,6 +31,7 @@ class Jogador{
 		this.estadoNascimento = estadoNascimento;
 	}
 
+	//Getters e Setters
 	public void setId(int id){
 		this.id = id;
 	}
@@ -85,9 +86,9 @@ class Jogador{
 	}
 
 	public void ler(String s){
-		String[] array = s.split(",", 8);
+		String[] array = s.split(",", 8); //Dividir a string em um array de strings, separando por virgula e limitando a 8 casas
 		this.id = Integer.parseInt(array[0]);
-		this.nome = array[1].isEmpty() ? "nao informado" : array[1];
+		this.nome = array[1].isEmpty() ? "nao informado" : array[1]; //Se o nome for vazio, substituir por "nao informado"
 		this.altura = Integer.parseInt(array[2]);
 		this.peso = Integer.parseInt(array[3]);
 		this.universidade = array[4].isEmpty() ? "nao informado" : array[4] ;
@@ -96,7 +97,7 @@ class Jogador{
 		this.estadoNascimento = array[7].isEmpty() ? "nao informado" : array[7];
 	}
 
-	public void clone(Jogador j){
+	public void clone(Jogador j){ //Clonar um jogador
 		this.id = j.id;
 		this.nome = j.nome;
 		this.altura = j.altura;
@@ -111,7 +112,7 @@ class Jogador{
 
 class Q01{
 		public static void main(String[] args){
-			Jogador[] players = new Jogador[3923];
+			Jogador[] players = new Jogador[3923]; //Criar array de Jogadores
 			
 			Arq arq = new Arq();
 			String str;
@@ -126,7 +127,7 @@ class Q01{
 
 			String entrada = MyIO.readLine();
 			int id;
-			while(!(entrada.charAt(0) == 'F' && entrada.charAt(1) == 'I' && entrada.charAt(2) == 'M' && entrada.length() == 3)){
+			while(!(entrada.equals("FIM"))){ //Enquanto a entrada não for FIM
 				id = Integer.parseInt(entrada);
 				players[id].imprimir();
 				entrada = MyIO.readLine();

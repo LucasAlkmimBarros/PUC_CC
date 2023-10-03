@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <time.h>
+
+float inicioTempo, fimTempo;
+int comp = 0, mov = 0;
 
 typedef struct { //Struct para guardar os dados dos jogadores
     int id;
@@ -14,7 +19,7 @@ typedef struct { //Struct para guardar os dados dos jogadores
 
 } Jogador;
 
-void imprimir(Jogador *jogador){
+void imprimir(Jogador *jogador){ //Funcao para imprimir os dados dos jogadores
     printf("[%i ## %s ## %i ## %i ## %i ## %s ## %s ## %s]\n", jogador->id, jogador->nome, jogador->altura, jogador->peso, jogador->anoNascimento, jogador->universidade, jogador->cidadeNascimento, jogador->estadoNascimento);
 }
 
@@ -69,7 +74,7 @@ void replaceVirgula(char *str){
     strcpy(str, tmp);
 }
 
-void ler(char str[300], Jogador *jogador){
+void ler(char str[300], Jogador *jogador){ //Funcao para ler os dados dos jogadores
     replaceVirgula(str); /* Como a funcao strtok ignora quando temos vazio, por exemplo ",," ,temos que substituir os valores antes de fazer a separaçao*/
 
     str[strcspn(str, "\n")] = '\0'; // Remove o '\n' no final da string
@@ -120,6 +125,32 @@ void clone(Jogador *jogador, Jogador *novo){ //Funcao para clonar um jogador
     strcpy(novo->estadoNascimento, jogador->estadoNascimento);
 }
 
+void swap(Jogador *j1, Jogador *j2){
+    Jogador tmp;
+    clone(j1, &tmp);
+    clone(j2, j1);
+    clone(&tmp, j2);
+}
+
+
+void selecao(Jogador array[], int tam, int i){
+    int menor = i;
+    if(i < tam-1){
+        for(int j = i+1; j <  tam; j++){
+            comp++;
+            if(strcmp(array[menor].nome, array[j].nome) > 0){ //O primeiro é maior
+                mov += 3;
+                swap(&array[menor], &array[j]);
+            }   
+        }
+        selecao(array, tam, i+1);
+    }
+}
+
+void selecaoRec(Jogador array[], int tam){
+    selecao(array, tam, 0);
+}
+
 void main(){
     Jogador players[3923];
     char n[5];
@@ -140,12 +171,34 @@ void main(){
         i++;
     }
 
+    Jogador playersClone[3923];
+
+
     scanf("%s", n);
-    while(strcmp(n, "FIM") != 0){
-        imprimir(&players[atoi(n)]);
+    int j = 0;
+    while(strcmp(n, "FIM") != 0){ //Clonando os jogadores para um novo array
+        clone(&players[atoi(n)], &playersClone[j]);
         scanf("%s", n);
+        j++;
     }
 
 
+    //Ordenando os jogadores pelo nome por selecao recursiva
+    inicioTempo = clock();
+    selecaoRec(playersClone, j);
+    fimTempo = clock();
+
+    for(int h = 0; h < j; h++){
+        imprimir(&playersClone[h]);
+    }
+
     fclose(arq);
+
+    float tempo = fimTempo - inicioTempo; 
+
+    arq = fopen("matrícula_selecaoRecursiva.txt.", "w");
+    fprintf(arq, "807205\t %i\t %i\t %f", comp, mov, tempo);
+
+    fclose(arq);
+    
 }

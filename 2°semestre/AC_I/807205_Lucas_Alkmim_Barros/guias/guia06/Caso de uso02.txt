@@ -1,0 +1,37 @@
+Caso de Uso: Realizar Reserva de Quarto
+
+Sumário: Este caso de uso permite que um hóspede faça uma reserva de quarto no hotel, especificando as datas desejadas, o tipo de quarto e outras informações relevantes.
+
+Atores:
+⚫ Hóspede: Cliente que deseja fazer uma reserva no hotel.
+⚫ Atendente: Funcionário do hotel responsável por auxiliar o hóspede no processo de reserva.
+
+Pré-condições:
+a) O sistema está disponível e acessível.
+b) O hóspede está interessado em fazer uma reserva.
+c) O atendente está disponível para auxiliar o hóspede, se necessário.
+
+Fluxo de eventos:
+Fluxo básico:
+
+1. O hóspede inicia o caso de uso ao entrar em contato com o atendente, seja pessoalmente, por telefone ou via internet.
+2. O sistema exibe as opções de quartos disponíveis, incluindo informações sobre tipo de quarto, capacidade, comodidades e preços.
+3. O hóspede seleciona o tipo de quarto desejado e fornece as datas de check-in e check-out pretendidas.
+4. O sistema verifica a disponibilidade do quarto para as datas especificadas.
+5. Caso o quarto esteja disponível, o sistema registra a reserva e solicita ao hóspede informações adicionais, como nome, informações de contato, e número de hóspedes.
+6. O hóspede fornece as informações necessárias.
+7. O sistema exibe um resumo da reserva, incluindo datas, tipo de quarto, preço total estimado e informações do hóspede.
+8. O hóspede confirma a reserva.
+9. O sistema gera um número de reserva e envia uma confirmação ao hóspede, que pode ser impressa ou enviada por email.
+10. O sistema atualiza a disponibilidade do quarto.
+
+Fluxos alternativos:
+4a. Se o quarto não estiver disponível para as datas especificadas, o sistema notifica o hóspede e oferece opções de datas alternativas ou tipos de quarto disponíveis.
+4b. O hóspede decide cancelar a reserva antes de confirmar; o caso de uso é encerrado.
+
+Pós-condições:
+a) Uma reserva é registrada no sistema.
+b) O quarto é bloqueado nas datas da reserva.
+c) O hóspede recebe uma confirmação da reserva.
+
+
