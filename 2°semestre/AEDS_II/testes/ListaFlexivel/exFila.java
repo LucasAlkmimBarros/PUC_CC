@@ -1,6 +1,3 @@
-import java.security.cert.CertPathBuilderResult;
-
-import javax.swing.CellEditor;
 
 class Fila{
     private Celula primeiro;
