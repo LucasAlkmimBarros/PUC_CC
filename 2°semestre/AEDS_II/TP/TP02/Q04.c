@@ -191,7 +191,11 @@ void main(){
             meio = (inicio + fim) / 2;
 
             comp++;
-            if(strcmp(nomeJogador, playersClone[meio].nome) == 0){ 
+	    char nomeAsterisco[50];
+	    strcpy(nomeAsterisco, playersClone[meio].nome);
+	    nomeAsterisco[strcspn(nomeAsterisco, "*")] = '\0';
+
+            if(strcmp(nomeJogador, playersClone[meio].nome) == 0 || strcmp(nomeAsterisco, nomeJogador) == 0){ 
                 temNome = true;
                 break;
 
@@ -219,6 +223,6 @@ void main(){
     float tempo = fimTempo - inicioTempo; 
     fclose(arq);
 
-    arq = fopen("matricula_binaria", "w");
+    arq = fopen("807205_binaria", "w");
     fprintf(arq, "807205\t %f\t %i", tempo, comp);
 }

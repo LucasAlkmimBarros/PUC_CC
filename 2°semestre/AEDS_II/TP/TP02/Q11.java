@@ -237,7 +237,7 @@ class Q11 {
             tempo = (fimTempo - inicioTempo) / 1000.0;
 
 			//Registro de Log
-			arq.openWrite("matrícula_countingsort.txt");
+			arq.openWrite("807205_countingsort.txt");
 			arq.println("807205\t" + comp + "\t" + mov + "\t" + tempo);
 			arq.close(); 
 		}

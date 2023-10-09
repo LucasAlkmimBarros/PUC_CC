@@ -112,11 +112,7 @@ class Jogador{
 
 
 
-class Q05 {
-
-		public static long now(){
-			return new Date().getTime();
-		}
+class Q15 {
 
 		public static void swap(Jogador j1, Jogador j2){
 			Jogador tmp;
@@ -126,9 +122,51 @@ class Q05 {
 			j1.clone(j2);
 			j2.clone(tmp);
 		}
+
+        public static int getPosMaior(Jogador[] array, int n){ //Retorna a posicao do maior nome entre o intervalo de 0 a n
+            int maior = 0;
+
+            for(int i = 1; i < n; i++){
+                if((array[maior].getNome()).compareTo(array[i].getNome()) < 0){ //Se o nome da posicao "maior" for menor que o nome da posicao "i"
+                    maior = i;
+                }
+            }
+
+            return maior;
+        }
+
+        public static void selecaoParcial(Jogador[] players, int n){
+            int k = 10;
+            
+
+            //Comparando os valores
+            for(int i = k; i < n; i++){
+                if((players[i].getNome()).compareTo(players[getPosMaior(players, k)].getNome()) < 0){ //Se o player[i] for menor...
+                    swap(players[i], players[getPosMaior(players, k)]);
+                }
+            }
+
+            //Ordenando os menores internamente
+            int menor;
+			int resultado;
+
+			for(int i = 0; i < 9; i++){
+				menor = i;
+				for(int j = i+1; j < k; j++){
+
+					resultado = players[menor].getNome().compareTo(players[j].getNome()); /*O método compareTo funciona igual ao strcmp() */
+					if(resultado > 0){ //Primeiro é maior que segundo
+						menor = j;
+					} 
+				}
+				swap(players[menor], players[i]);
+			}
+
+        }
+
+        
 		public static void main(String[] args){
-			float inicio = 0;
-			float fim = 0;
+
 			Jogador[] players = new Jogador[3923];
 			Arq arq = new Arq();
 			String str;
@@ -155,40 +193,14 @@ class Q05 {
 				pos++;
 			}
 
-
-			int comp = 0, mov = 0;
-			long tempo, inicioTempo, fimTempo;
-
-			//Ordenando por selecao
-			int menor;
-			int resultado;
-
-			inicioTempo = now();
-			for(int i = 0; i < pos-1; i++){
-				menor = i;
-				for(int j = i+1; j < pos; j++){
-
-					resultado = playersClone[menor].getNome().compareTo(playersClone[j].getNome()); /*O método compareTo funciona igual ao strcmp() */
-					comp++;
-					if(resultado > 0){ //Primeiro é maior que segundo
-						menor = j;
-					} 
-				}
-				mov += 3;
-				swap(playersClone[menor], playersClone[i]);
-			}
-			fimTempo = now();
+			//Ordenando por Selecao Parcial / Nome
+            selecaoParcial(playersClone, pos);
+            
+            
 
 			//Imprimindo Jogadores ordenandos
-			for(int i = 0; i < pos; i++){
-				playersClone[i].imprimir();
-			}
-
-			tempo = fimTempo - inicioTempo;
-
-			//Registro de Log
-			arq.openWrite("807205_selecao.txt");
-			arq.println("807205\t" + comp + "\t" + mov + "\t" + tempo);
-			arq.close();
+		 	for(int i = 0; i < 10; i++){
+        		playersClone[i].imprimir();
+			} 
 		}
 }

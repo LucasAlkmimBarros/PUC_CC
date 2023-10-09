@@ -190,7 +190,7 @@ class Q07 {
 			tempo = fimTempo - inicioTempo;
 
 			//Registro de Log
-			arq.openWrite("matrícula_insercao.txt");
+			arq.openWrite("807205_insercao.txt");
 			arq.println("807205\t" + comp + "\t" + mov + "\t" + tempo);
 			arq.close();
 		}

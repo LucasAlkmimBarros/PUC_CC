@@ -213,7 +213,7 @@ void main(){
 
     float tempo = fimTempo - inicioTempo;  
 
-    arq = fopen(" matrícula_quicksort.txt", "w");
+    arq = fopen("807205_quicksort.txt", "w");
     fprintf(arq, "807205\t %i\t %i\t %fs", comp, mov, tempo/1000.0);
 
     fclose(arq);

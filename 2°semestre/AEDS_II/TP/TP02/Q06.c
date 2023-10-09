@@ -196,7 +196,7 @@ void main(){
 
     float tempo = fimTempo - inicioTempo; 
 
-    arq = fopen("matrícula_selecaoRecursiva.txt.", "w");
+    arq = fopen("807205_selecaoRecursiva.txt.", "w");
     fprintf(arq, "807205\t %i\t %i\t %f", comp, mov, tempo);
 
     fclose(arq);

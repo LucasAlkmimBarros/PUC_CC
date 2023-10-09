@@ -118,8 +118,8 @@ class Q03 {
 			return new Date().getTime();
 		}
 		public static void main(String[] args){
-			long inicio = 0;
-			long fim = 0;
+			float inicio = 0;
+			float fim = 0;
 			Jogador[] players = new Jogador[3923];
 			Arq arq = new Arq();
 			String str;
@@ -159,7 +159,8 @@ class Q03 {
 					nomeJogador = playersClone[i].getNome();
 					
 					comparacoes++;
-					if(nomeJogador.equals(entrada)){
+					String entrada2 = entrada + "*";
+					if(nomeJogador.equals(entrada) || nomeJogador.equals(entrada2)){
 						temNome = true;			
 					}
 				}
@@ -171,10 +172,10 @@ class Q03 {
 				entrada = MyIO.readLine();
 			}
 
-			long tempo = (fim - inicio);
+			float tempo = (fim - inicio)/1000;
 
-			arq.openWrite("matricula_sequencial.txt");
-			arq.println("807205\t" + tempo + "\t" + comparacoes);
+			arq.openWrite("807205_sequencial.txt");
+			arq.print("807205\t" + tempo + "s" + "\t" + comparacoes);
 			arq.close();
 		}
 }

@@ -130,35 +130,52 @@ void swap(Jogador *j1, Jogador *j2){
     clone(j1, &tmp);
     clone(j2, j1);
     clone(&tmp, j2);
+    mov += 3;
 }
 
-void insercaoPorCor(int cor,int h, Jogador array[], int tam){ //Ordena os jogadores pelo peso, caso seja igual o nome sera o desempate
-    for (int i = (h + cor); i < tam; i+=h) {
-        Jogador tmp;
-        clone(&array[i], &tmp);
-        int j = i - h;
-        while ((j >= 0) && (array[j].peso > tmp.peso || (array[j].peso == tmp.peso && strcmp(array[j].nome, tmp.nome) > 0))) {
-            comp++;
-            mov++;
-            clone(&array[j], &array[j + h]);
-            j -= h;
+int getMax(Jogador array[], int n){
+    int maior = array[0].id;
+    for(int i = 1; i < n; i++){
+        comp++;
+        if(array[i].id > maior){
+            maior = array[i].id;
         }
-        if (i != j + h) {
-            mov++;
-        }
-        clone(&tmp, &array[j + h]);
     }
-}   
 
-void shellSort(Jogador array[], int tam){
-    int h = 1;
-    do { h = (h * 3) + 1; } while(h < tam);
-    do {
-        h /= 3;
-        for(int cor = 0; cor < h; cor++){
-            insercaoPorCor(cor, h, array, tam);
-        }
-    } while (h != 1);
+    return maior;
+}
+
+void radcountingSort(Jogador array[], int n, int exp){ 
+    int count[10];
+    Jogador output[n];
+
+    for(int i = 0; i < 10; count[i] = 0, i++);
+
+    for(int i = 0; i < n; i++){
+        count[(array[i].id/exp) % 10]++;
+    }
+
+    for(int i = 1; i < 10; i++){
+        count[i] += count[i-1];
+    }
+
+    for(int i = n-1; i >= 0; i--){
+        output[count[(array[i].id/exp) % 10] - 1] = array[i];
+        count[(array[i].id/exp) % 10]--;
+        mov++;
+    }
+
+    for(int i = 0; i < n; i++){
+        array[i] = output[i];
+        mov++;
+    }
+}
+
+void radixSort(Jogador array[], int n) { //RadixSort para ordenar os jogadores pelo id
+    int max = getMax(array, n);
+    for(int exp = 1; max/exp > 0; exp *= 10){
+        radcountingSort(array, n, exp);
+    }
 }
 
 
@@ -194,9 +211,9 @@ void main(){
     }
 
 
-    //Ordenando os jogadores pelo peso por shellsort (nome serve para desempate)
+    //Ordenando os jogadores pelo id usando radixSort
     inicioTempo = clock();
-    shellSort(playersClone, j);
+    radixSort(playersClone, j);
     fimTempo = clock();
 
     for(int h = 0; h < j; h++){
@@ -205,11 +222,11 @@ void main(){
 
     fclose(arq);
 
-    float tempo = fimTempo - inicioTempo; 
+    float tempo = fimTempo - inicioTempo;  
 
-    arq = fopen("807205_shellsort.txt", "w");
-    fprintf(arq, "807205\t %i\t %i\t %f", comp, mov, tempo);
+    arq = fopen("807205_radixsort.txt", "w");
+    fprintf(arq, "807205\t %i\t %i\t %fs", comp, mov, tempo/1000.0);
 
     fclose(arq);
     
-}
+}   
