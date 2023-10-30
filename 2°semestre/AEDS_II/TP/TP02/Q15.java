@@ -196,7 +196,6 @@ class Q15 {
 			//Ordenando por Selecao Parcial / Nome
             selecaoParcial(playersClone, pos);
             
-            
 
 			//Imprimindo Jogadores ordenandos
 		 	for(int i = 0; i < 10; i++){
