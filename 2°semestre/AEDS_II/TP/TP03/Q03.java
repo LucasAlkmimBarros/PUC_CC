@@ -108,16 +108,16 @@ class Jogador{
 	}
 }
 
-class Lista{
+class Pilha{
     private Jogador[] array;
     private int n;
 
-    Lista(){
+    Pilha(){
         array = new Jogador[1000];
         n = 0;
     }
 
-    Lista(int tamanho){
+    Pilha(int tamanho){
         array = new Jogador[tamanho];
         n = 0;
 
@@ -126,54 +126,15 @@ class Lista{
         }
     }
 
-    public void inserirInicio(Jogador jogador){
-        for(int i = n; i > 0; i--){
-            array[i].clone(array[i-1]);
-        }
-        array[0].clone(jogador);
-        n++;
-    }
-
-    public void inserir(Jogador jogador, int pos){
-        for(int i = n; i > pos; i--){
-            array[i].clone(array[i-1]);
-        }
-        array[pos].clone(jogador);
-        n++;
-    }
-
-    public void inserirFim(Jogador jogador){
+    public void inserir(Jogador jogador){
         array[n].clone(jogador);
         n++;
     }
 
-    public Jogador removerInicio(){
-        Jogador resp = new Jogador();
-        resp.clone(array[0]);
-
-        for(int i = 0; i < n-1; i++){
-            array[i].clone(array[i+1]);
-        }
-        n--;
-        return resp;
-    }
-
-    public Jogador remover(int pos){
-        Jogador resp = new Jogador();
-        resp.clone(array[pos]);
-
-        for(int i = pos; i < n-1; i++){
-            array[i].clone(array[i+1]);
-        }
-        n--;
-        return resp;
-    }
-
-    public Jogador removerFim(){
+    public Jogador remover(){
         Jogador resp = new Jogador();
         resp.clone(array[n-1]);
         n--;
-
         return resp;
     }
 
@@ -190,7 +151,7 @@ class Lista{
     }
 }
 
-class Q01{  //Lista com Alocação Sequencial em Java
+class Q03{  //Pilha com Alocação Sequencial em Java
 
     public static void main(String[] args){
         Jogador[] players = new Jogador[3923];
@@ -207,11 +168,11 @@ class Q01{  //Lista com Alocação Sequencial em Java
 
         String entrada = MyIO.readLine();
         int id , pos = 0;
-        Lista playersClone = new Lista(3923);
+        Pilha playersClone = new Pilha(3923);
 
         while(!(entrada.equals("FIM"))){
             id = Integer.parseInt(entrada);
-            playersClone.inserirFim(players[id]);
+            playersClone.inserir(players[id]);
 
             entrada = MyIO.readLine();
             pos++;
@@ -221,69 +182,34 @@ class Q01{  //Lista com Alocação Sequencial em Java
 
         for(int i = 0; i < n; i++){
             id = 0;
-            int p = 0;
-    
+            String comando;
+
             entrada = MyIO.readLine();
             String[] partes = entrada.split(" "); //Obtendo as partes da entrada
+            comando = partes[0];
             if(partes.length == 2){
                 id = Integer.parseInt(partes[1]);
             }
-            else if(partes.length == 3){
-                p = Integer.parseInt(partes[1]);
-                id = Integer.parseInt(partes[2]);
-            }
+            
 
             //Verificando as entradas
 
-            if(partes[0].equals("II")){
-                //Inserir no inicio
-
-                Jogador aux = new Jogador();
-                aux.clone(players[id]);
-
-                playersClone.inserirInicio(aux);
-                pos++;
-            }
-            else if(partes[0].equals("I*")){
+            if(comando.equals("I")){
                 //Inserir
 
                 Jogador aux = new Jogador();
                 aux.clone(players[id]);
 
-                playersClone.inserir(aux, p);
-                pos++;
-            } 
-            else if(partes[0].equals("IF")){
-                //Inserir no fim
-
-                Jogador aux = new Jogador();
-                aux.clone(players[id]);
-
-                playersClone.inserirFim(aux);
+                playersClone.inserir(aux);
                 pos++;
             }
-            else if(partes[0].equals("RI")){
-                //Remover no inicio
-
-                Jogador resp = playersClone.removerInicio();
-                pos--;
-                MyIO.println("(R) " + resp.getNome());
-            }
-            else if(partes[0].equals("R*")){
+            else if(comando.equals("R")){
                 //Remover
-                p = id; //O valor da posição está na variável id
 
-                Jogador resp = playersClone.remover(p);
-                pos--;
+                Jogador resp = new Jogador();
+                resp.clone(playersClone.remover());
                 MyIO.println("(R) " + resp.getNome());
-            }
-            else if(partes[0].equals("RF")){
-                //Remover no fim
-
-                Jogador resp = playersClone.removerFim();
-                pos--;
-                MyIO.println("(R) " + resp.getNome());
-            }
+            } 
         }
 
         playersClone.corrigeId();
