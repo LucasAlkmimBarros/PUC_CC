@@ -108,89 +108,136 @@ class Jogador{
 	}
 }
 
-class Lista{
-    private Jogador[] array;
-    private int n;
+class Celula {
+    public Jogador elemento;
+    public Celula prox; 
 
-    Lista(){
-        array = new Jogador[1000];
-        n = 0;
+    Celula(){
+        this(new Jogador());
     }
 
-    Lista(int tamanho){
-        array = new Jogador[tamanho];
-        n = 0;
+    Celula(Jogador elemento){
+        this.elemento = elemento;
+        this.prox = null;
+    }
+}
 
-        for(int i = 0; i < tamanho; i++){
-            array[i] = new Jogador();
-        }
+class ListaFlex{
+    private Celula primeiro, ultimo;
+
+    ListaFlex(){
+        primeiro = new Celula();
+        ultimo = primeiro;
     }
 
     public void inserirInicio(Jogador jogador){
-        for(int i = n; i > 0; i--){
-            array[i].clone(array[i-1]);
+        Celula tmp = new Celula(jogador);
+        tmp.prox = primeiro.prox;
+        primeiro.prox = tmp;
+        if(primeiro == ultimo){
+            ultimo = tmp;
         }
-        array[0].clone(jogador);
-        n++;
+        tmp = null;
     }
 
     public void inserir(Jogador jogador, int pos){
-        for(int i = n; i > pos; i--){
-            array[i].clone(array[i-1]);
+        int tamanho = tamanho();
+
+        if(pos == 0){
+            inserirInicio(jogador);
         }
-        array[pos].clone(jogador);
-        n++;
+        else if(pos == tamanho){
+            inserirFim(jogador);
+        }
+        else{
+            Celula i = primeiro;
+            for(int j = 0; j < pos; j++, i = i.prox);
+
+            Celula tmp = new Celula(jogador);
+            tmp.prox = i.prox;
+            i.prox = tmp;
+            tmp = i = null;  
+        }
     }
 
     public void inserirFim(Jogador jogador){
-        array[n].clone(jogador);
-        n++;
+        ultimo.prox = new Celula(jogador);
+        ultimo = ultimo.prox;
     }
 
     public Jogador removerInicio(){
         Jogador resp = new Jogador();
-        resp.clone(array[0]);
 
-        for(int i = 0; i < n-1; i++){
-            array[i].clone(array[i+1]);
-        }
-        n--;
+        Celula tmp = primeiro;
+        primeiro = primeiro.prox;
+        resp.clone(primeiro.elemento);
+
+        tmp.prox = null;
+        tmp = null;
+
         return resp;
     }
 
     public Jogador remover(int pos){
         Jogador resp = new Jogador();
-        resp.clone(array[pos]);
-
-        for(int i = pos; i < n-1; i++){
-            array[i].clone(array[i+1]);
+        int tamanho = tamanho();
+        if(pos == 0){
+            resp = removerInicio();
         }
-        n--;
+        else if(pos == tamanho-1){
+            resp = removerFim();
+        }
+        else{
+            Celula i = primeiro;
+            for(int j = 0; j < pos; j++, i = i.prox);
+
+            Celula tmp = i.prox;
+            resp.clone(tmp.elemento);
+            i.prox = tmp.prox;
+            tmp.prox = null;
+            i = tmp = null;
+        }
+
         return resp;
     }
 
     public Jogador removerFim(){
         Jogador resp = new Jogador();
-        resp.clone(array[n-1]);
-        n--;
+
+        Celula i;
+        for(i = primeiro; i.prox != ultimo; i = i.prox);
+        resp.clone(ultimo.elemento);
+        ultimo = i;
+        i = ultimo.prox = null;
 
         return resp;
     }
 
     public void imprimir(){
-        for(int i = 0; i < n; i++){
-            array[i].imprimir();
+        Celula i;
+        for(i = primeiro.prox; i != null; i = i.prox){
+            i.elemento.imprimir();
         }
     }
 
     public void corrigeId(){
-        for(int i = 0; i < n; i++){
-            array[i].setId(i);
+        Celula i;
+        int j = 0;
+        for(i = primeiro.prox; i != null; i = i.prox, j++){
+            i.elemento.setId(j);
         }
+    }
+
+    public int tamanho(){
+        int resp = 0;
+        Celula i;
+        for(i = primeiro; i != ultimo; i = i.prox, resp++);
+
+        return resp;
     }
 }
 
-class Q01{  //Lista com Alocação Sequencial em Java
+class Q05{  //Lista com Alocação Flexível em Java
 
     public static void main(String[] args){
         Jogador[] players = new Jogador[3923];
@@ -206,17 +253,16 @@ class Q01{  //Lista com Alocação Sequencial em Java
         arq.close();
 
         String entrada = MyIO.readLine();
-        int id , pos = 0;
-        Lista playersClone = new Lista(3923);
+        int id;
+        ListaFlex playersClone = new ListaFlex();
 
         while(!(entrada.equals("FIM"))){
             id = Integer.parseInt(entrada);
             playersClone.inserirFim(players[id]);
 
             entrada = MyIO.readLine();
-            pos++;
         }
- 
+
         int n = MyIO.readInt();
 
         for(int i = 0; i < n; i++){
@@ -242,7 +288,6 @@ class Q01{  //Lista com Alocação Sequencial em Java
                 aux.clone(players[id]);
 
                 playersClone.inserirInicio(aux);
-                pos++;
             }
             else if(partes[0].equals("I*")){
                 //Inserir
@@ -251,7 +296,6 @@ class Q01{  //Lista com Alocação Sequencial em Java
                 aux.clone(players[id]);
 
                 playersClone.inserir(aux, p);
-                pos++;
             } 
             else if(partes[0].equals("IF")){
                 //Inserir no fim
@@ -260,13 +304,11 @@ class Q01{  //Lista com Alocação Sequencial em Java
                 aux.clone(players[id]);
 
                 playersClone.inserirFim(aux);
-                pos++;
             }
             else if(partes[0].equals("RI")){
                 //Remover no inicio
 
                 Jogador resp = playersClone.removerInicio();
-                pos--;
                 MyIO.println("(R) " + resp.getNome());
             }
             else if(partes[0].equals("R*")){
@@ -274,19 +316,17 @@ class Q01{  //Lista com Alocação Sequencial em Java
                 p = id; //O valor da posição está na variável id
 
                 Jogador resp = playersClone.remover(p);
-                pos--;
                 MyIO.println("(R) " + resp.getNome());
             }
             else if(partes[0].equals("RF")){
                 //Remover no fim
 
                 Jogador resp = playersClone.removerFim();
-                pos--;
                 MyIO.println("(R) " + resp.getNome());
             }
         }
 
         playersClone.corrigeId();
-        playersClone.imprimir();
+        playersClone.imprimir(); 
     }
 }

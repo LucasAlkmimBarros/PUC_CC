@@ -141,11 +141,10 @@ int mediaAlturas(){
             k = (k + 1) % TAM;
         }
 
-    media = soma / qt;
-
+    media = (float)soma / qt;
     //arredondando
+    media = media + 0.5;
     media = (int)media;
-    
     return media;
 }
 
@@ -162,8 +161,8 @@ void inserir(Jogador jogador){
 
     filaCircular[ultimo] = jogador;
     ultimo = (ultimo + 1) % TAM;
-    int media = mediaAlturas();
-    printf("%i\n", media);
+    float media = mediaAlturas();
+    printf("%.f\n", media);
 }
 
 void main(){
