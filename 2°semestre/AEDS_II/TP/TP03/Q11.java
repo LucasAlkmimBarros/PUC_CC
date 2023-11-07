@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 class Jogador{
 	private int id;
 	private String nome;
@@ -86,7 +81,7 @@ class Jogador{
 	}
 
 	public void imprimir(){		
-		MyIO.println("["+ id +"] ## "+ nome + " ## " + altura + " ## " + peso + " ## " + anoNascimento + " ## " + universidade + " ## " + cidadeNascimento + " ## " + estadoNascimento +" ##");
+		MyIO.println("["+ id +" ## "+ nome + " ## " + altura + " ## " + peso + " ## " + anoNascimento + " ## " + universidade + " ## " + cidadeNascimento + " ## " + estadoNascimento +"]");
 	}
 
 	public void ler(String s){
@@ -113,131 +108,115 @@ class Jogador{
 	}
 }
 
-class Celula {
+class CelulaDupla {
     public Jogador elemento;
-    public Celula prox; 
+    public CelulaDupla prox;
+    public CelulaDupla ant; 
 
-    Celula(){
+    CelulaDupla(){
         this(new Jogador());
     }
 
-    Celula(Jogador elemento){
+    CelulaDupla(Jogador elemento){
         this.elemento = elemento;
         this.prox = null;
+		this.ant = null;
     }
 }
 
-class PilhaFlex{
-    private Celula topo;
+class ListaFlex{
+    public static CelulaDupla primeiro, ultimo;
 
-    PilhaFlex(){
-        topo = null;
+    ListaFlex(){
+        primeiro = new CelulaDupla();
+        ultimo = primeiro;
     }
 
-    public void inserir(Jogador jogador){ //Inserir no fim
-        if(topo == null){
-            topo = new Celula(jogador);
-        }
-        else{
-            Celula i;
-            for(i = topo; i.prox != null; i = i.prox);
-            i.prox = new Celula(jogador);
-        }
+    public void inserir(Jogador jogador){
+        ultimo.prox = new CelulaDupla(jogador);
+        ultimo = ultimo.prox;
     }
 
-    public Jogador remover(){
-        Jogador resp = new Jogador();
-        if(topo != null){
-            if(topo.prox == null){ //SO tem 1 elemento
-                resp.clone(topo.elemento);
-                topo = null;
-            }
-            else{
-                Celula i;
-                for(i = topo; i.prox.prox != null; i = i.prox);
-                resp.clone(i.prox.elemento);
-                i.prox = null;
-                i = null;
-            }
-        }
-        return resp;
-    }
-
-    public void imprimir(){
-        Celula i;
-        for(i = topo; i != null; i = i.prox){
+    public void mostar(){
+        CelulaDupla i;
+        for(i = primeiro.prox; i != null; i = i.prox){
             i.elemento.imprimir();
         }
     }
 
-    public void corrigeId(){
-        Celula i;
-        int j = 0;
-        for(i = topo; i != null; i = i.prox, j++){
-            i.elemento.setId(j);
-        }
+    public static void swap(Jogador j1, Jogador j2){
+        Jogador tmp = new Jogador();
+        tmp.clone(j1);
+        j1.clone(j2);
+        j2.clone(tmp);
     }
+
+	public void quickSort() {
+		quickSort(primeiro.prox, null);
+	}
+
+	private void quickSort(CelulaDupla esq, CelulaDupla dir) {
+		if (esq != dir) {
+			CelulaDupla pivo = particiona(esq, dir);
+			quickSort(esq, pivo);
+			quickSort(pivo.prox, dir);
+		}
+	}
+
+	private CelulaDupla particiona(CelulaDupla esq, CelulaDupla dir) {
+		CelulaDupla i = esq;
+		CelulaDupla j = esq.prox;
+		Jogador pivo = esq.elemento;
+
+		while (j != dir) {
+			int comparacaoEstados = compareEstados(j.elemento.getEstadoNascimento(), pivo.getEstadoNascimento());
+			
+			if (comparacaoEstados < 0 || (comparacaoEstados == 0 && j.elemento.getNome().compareTo(pivo.getNome()) <= 0)) {
+				i = i.prox;
+				swap(i.elemento, j.elemento);
+			}
+			j = j.prox;
+		}
+
+		swap(i.elemento, esq.elemento);
+		return i;
+	}
+
+	private int compareEstados(String estado1, String estado2) {
+		return estado1.compareTo(estado2);
+	}
+
+
+
 }
 
-class Q06 {  // Pilha com Alocação Flexível em Java
+class Q11{  //Lista com Alocação Flexível em Java
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Jogador[] players = new Jogador[3923];
-        BufferedReader br = new BufferedReader(new FileReader("/tmp/players.csv"));
+        Arq arq = new Arq();
         String str;
-        br.readLine(); // Pular a primeira linha
-        for (int i = 0; i < 3922; i++) {
-            str = br.readLine();
+        arq.openRead("/tmp/players.csv");
+        str = arq.readLine(); //Pular a primeira linha
+        for(int i = 0; i < 3922; i++){
+            str = arq.readLine();
             players[i] = new Jogador();
             players[i].ler(str);
         }
-        br.close();
+        arq.close();
 
-        BufferedReader brConsole = new BufferedReader(new InputStreamReader(System.in));
-        String entrada;
+        String entrada = MyIO.readLine();
         int id;
-        PilhaFlex playersClone = new PilhaFlex();
+        ListaFlex playersClone = new ListaFlex();
 
-        while (true) {
-            entrada = brConsole.readLine();
-            if (entrada.equals("FIM")) {
-                break;
-            }
+        while(!(entrada.equals("FIM"))){
             id = Integer.parseInt(entrada);
             playersClone.inserir(players[id]);
+
+            entrada = MyIO.readLine();
         }
 
-        int n = Integer.parseInt(brConsole.readLine());
-
-        for (int i = 0; i < n; i++) {
-            id = 0;
-            String comando;
-
-            entrada = brConsole.readLine();
-            String[] partes = entrada.split(" "); // Obtendo as partes da entrada
-            comando = partes[0];
-            if (partes.length == 2) {
-                id = Integer.parseInt(partes[1]);
-            }
-
-            // Verificando as entradas
-
-            if (comando.equals("I")) {
-                // Inserir
-
-                Jogador aux = new Jogador();
-                aux.clone(players[id]);
-
-                playersClone.inserir(aux);
-            } else if (comando.equals("R")) {
-                // Remover
-
-                Jogador resp = new Jogador();
-                resp.clone(playersClone.remover());
-                System.out.println("(R) " + resp.getNome());
-            }
-        }
-        playersClone.corrigeId();
-        playersClone.imprimir();
+        playersClone.quickSort();
+        playersClone.mostar();
     }
 }
