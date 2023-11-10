@@ -1,48 +1,45 @@
-/**
- * Algoritmo de ordenacao Quicksort
- * @author Max do Val Machado
- * @version 3 08/2020
- */
-class Quicksort extends Geracao {
-
-	/**
-	 * Construtor.
-	 */
-   public Quicksort(){
-      super();
-   }
-
-
-	/**
-	 * Construtor.
-	 * @param int tamanho do array de numeros inteiros.
-	 */
-   public Quicksort(int tamanho){
-      super(tamanho);
-   }
-
-
-	/**
-	 * Algoritmo de ordenacao Quicksort.
-	 */
-   @Override
-   public void sort() {
-      quicksort(0, n-1);
-   }
-
-	/**
-	 * Algoritmo de ordenacao Quicksort.
-    * @param int esq inicio do array a ser ordenado
-    * @param int dir fim do array a ser ordenado
-	 */
-    private void quicksort(int esq, int dir) {
+public void qsort()
+	{
+		quicksort(0, tamanho()-1);
+	}
+	
+	private void quicksort(int esq, int dir) {
         int i = esq, j = dir;
-        int pivo = array[(dir+esq)/2];
+        Celula pivo = primeiro.prox;
+	Celula m = primeiro.prox;
+        Celula a = primeiro.prox;
+	Celula k;
+	for(int x =0; x< (esq+dir)/2; x++)
+		pivo = pivo.prox;
+		for(int x = 0; x<i; x++)
+		{
+			m = m.prox;
+		}
+		for(int x =0; x<j; x++)
+		{
+			a = a.prox;
+		}
+
+
         while (i <= j) {
-            while (array[i] < pivo) i++;
-            while (array[j] > pivo) j--;
+            while (m.elemento < pivo.elemento)
+	    {
+		    i++;
+		    m = m.prox;
+	    }
+            while (a.elemento > pivo.elemento)
+	    {
+		    j--;
+		    for(k = primeiro.prox; k.prox!=a; k = k.prox);
+                    a = k;
+	    }
             if (i <= j) {
-                swap(i, j);
+                int tmp = a.elemento;
+		a.elemento = m.elemento;
+		m.elemento = tmp;
+		for(k=primeiro.prox; k.prox!=a; k = k.prox);
+		a = k;
+		m = m.prox;
                 i++;
                 j--;
             }
@@ -50,4 +47,3 @@ class Quicksort extends Geracao {
         if (esq < j)  quicksort(esq, j);
         if (i < dir)  quicksort(i, dir);
     }
-}
