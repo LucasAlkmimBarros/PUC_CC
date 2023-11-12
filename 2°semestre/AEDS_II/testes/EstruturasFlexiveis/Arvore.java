@@ -135,4 +135,38 @@ public class Arvore {
 
         return j;
     }
+
+    int removerMaiorEsq(int x){
+        return removerMaiorEsq(x, raiz);
+    }
+
+    int removerMaiorEsq(int x, No i){
+        if(i == null){
+            System.out.println("Elemento na existe!");
+            return 0;
+
+        } else if (x < i.elemento){
+            return removerMaiorEsq(x, i.esq);
+
+        } else if (x > i.elemento){
+            return removerMaiorEsq(x, i.dir);
+
+        } else{
+            return removerMaior(i.esq, i);
+        }
+    }
+
+    int removerMaior(No i, No pai){
+        int resp = 0;
+        if(i.dir == null){ 
+            resp = i.elemento;
+            pai.dir = i.esq;
+        } else{
+            pai = i;
+            i = i.dir;
+            resp = removerMaior(i, pai);
+        }
+
+        return resp;
+    }
 }

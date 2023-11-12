@@ -7,14 +7,18 @@ public class Testes {
         arvore.inserir(11);
         arvore.inserir(1);
         arvore.inserir(5);
-        arvore.inserirPai(9);
-        arvore.inserirPai(13);
+        arvore.inserir(4);
+        arvore.inserir(20);
+        arvore.inserir(0);
+        arvore.inserir(2);
+        arvore.inserir(9);
+        arvore.inserir(13);
 
         arvore.caminharCentral();
 
-        arvore.remover(7);
-        
-        System.out.println("Removendo 7");
+        System.out.println("Removendo o maior na esquerda do 11: " + arvore.removerMaiorEsq(11));
+
         arvore.caminharCentral();
     }
 }
+
