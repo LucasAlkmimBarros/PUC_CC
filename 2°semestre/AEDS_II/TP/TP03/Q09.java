@@ -1,211 +1,233 @@
-class Celula{
-    public int elemento;
-    public Celula sup, inf, dir, esq;
+class Celula {
+    int elemento;
+    Celula esq, dir, sup, inf;
 
-    Celula(){
+    Celula() {
         this(0);
     }
 
-    Celula(int e){
-        this(e, null, null, null, null);
+    Celula(int elemento) {
+        this(elemento, null, null, null, null);
     }
 
-    Celula(int e, Celula sup, Celula inf, Celula dir, Celula esq){
-        elemento = e;
+    Celula(int elemento, Celula esq, Celula dir, Celula sup, Celula inf) {
+        this.elemento = elemento;
+        this.esq = esq;
+        this.dir = dir;
         this.sup = sup;
         this.inf = inf;
-        this.dir = dir;
-        this.esq = esq;
     }
 }
 
-class Matriz{
-    public Celula inicio;
-    public int linha, coluna;
+class Matriz {
+    int linha;
+    int coluna;
+    Celula inicio;
 
-    Matriz(){
-        this(3, 3);
+    Matriz() {
+        this(0, 0);
     }
 
-    Matriz(int l, int c){
-        linha = l;
-        coluna = c;
-
-        criarMatriz();
+    Matriz(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
     }
 
-    public void criarMatriz(){
-        inicio = new Celula();
-        Celula tmp = inicio;
+    void criarMatriz() {
+        Celula u = new Celula();
+        inicio = u;
+        Celula y = inicio;
 
-        //Primeira linha
-        for(int i = 0; i < coluna-1; i++){
-            tmp.dir = new Celula();
-            tmp.dir.esq = tmp;
-
-            tmp = tmp.dir;
+        for (int j = 1; j < coluna; j++) {
+            u.dir = new Celula();
+            u.dir.esq = u;
+            u = u.dir;
         }
 
-        //Outras linhas
-        Celula linhaAnterior = inicio;
-        Celula k;
-        tmp = inicio;
+        for (int i = 1; i < linha; i++) {
+            y.inf = new Celula();
+            y.inf.sup = y;
+            y = y.inf;
+            u = y;
 
-        for(int i = 0; i < linha-1; i++){
-            linhaAnterior.inf = new Celula();
-            linhaAnterior.inf.sup = linhaAnterior;
-
-            linhaAnterior = linhaAnterior.inf;
-            tmp = linhaAnterior;
-
-            for(int j = 0; j < coluna-1; j++){
-                tmp.dir = new Celula();
-                tmp.dir.esq = tmp;
-                tmp.dir.sup = tmp.sup.dir;
-                tmp.dir.sup.inf = tmp.dir;
-
-                tmp = tmp.dir;
+            for (int j = 1; j < coluna; j++) {
+                u.dir = new Celula();
+                u.dir.esq = u;
+                u = u.dir;
+                u.sup = u.esq.sup.dir;
+                u.sup.inf = u;
             }
         }
     }
 
-    public void inserir(){
-        Celula tmp = inicio;
-        Celula linhaAnterior = inicio;
+    void inserir(int array[]) {
+        Celula y1, u1;
+        y1 = u1 = inicio;
+        int index = 0;
 
-        for(int i = 0; i < linha; i++){
-            for(int j = 0; j < coluna; j++){
-                tmp.elemento = MyIO.readInt();
-                tmp = tmp.dir;
+        for (int i = 0; i < linha; i++) {
+            for (int j = 0; j < coluna; j++) {
+                u1.elemento = array[index++];
+                u1 = u1.dir;
             }
-            linhaAnterior = linhaAnterior.inf;
-            tmp = linhaAnterior;
+            y1 = y1.inf;
+            u1 = y1;
         }
     }
 
-    public void mostrar(int l, int c){
-        linha = l;
-        coluna = c;
-        Celula tmp = inicio;
-        Celula linhaAnterior = inicio;
+    void ler() {
+        int x = MyIO.readInt();
+        Celula u = new Celula(x);
+        inicio = u;
+        Celula y = inicio;
 
-        for(int i = 0; i < linha; i++){
-            for(int j = 0; j < coluna; j++){
-                MyIO.print(tmp.elemento + " ");
-                tmp = tmp.dir;
-            }
-            linhaAnterior = linhaAnterior.inf;
-            tmp = linhaAnterior;
-            MyIO.println("");
+        for (int j = 1; j < coluna; j++) {
+            x = MyIO.readInt();
+            u.dir = new Celula(x);
+            u.dir.esq = u;
+            u = u.dir;
         }
-    }
 
-    public void mostrarDiagonalPrincipal(){
-        Celula tmp = inicio;
+        for (int i = 1; i < linha; i++) {
+            x = MyIO.readInt();
+            y.inf = new Celula(x);
+            y.inf.sup = y;
+            y = y.inf;
+            u = y;
 
-        while(tmp != null){
-            MyIO.print(tmp.elemento + " ");
-            tmp = tmp.dir;
-            if(tmp != null){
-                tmp = tmp.inf;
-            }
-        }
-        MyIO.println("");
-    }
-
-    public void mostrarDiagonalSecundaria(){
-        Celula tmp = inicio;
-        while(tmp.dir != null){ // Anda para a direita
-            tmp = tmp.dir;
-        }
-        while(tmp != null){
-            MyIO.print(tmp.elemento + " ");
-            tmp = tmp.esq;
-            if(tmp != null){
-                tmp = tmp.inf;
+            for (int j = 1; j < coluna; j++) {
+                x = MyIO.readInt();
+                u.dir = new Celula(x);
+                u.dir.esq = u;
+                u = u.dir;
+                u.sup = u.esq.sup.dir;
+                u.sup.inf = u;
             }
         }
     }
 
-    public Matriz soma(Matriz m2){
-        Matriz m3 = new Matriz();
-        Celula tmp = this.inicio;
-        Celula tmp2 = m2.inicio;
-        Celula tmp3 = m3.inicio;
-        Celula linhaAnterior = this.inicio;
-        Celula linhaAnterior2 = m2.inicio;
-        Celula linhaAnterior3 = m3.inicio;
+    void mostrar() {
+        Celula y = inicio;
+        Celula u = inicio;
 
-        for(int i = 0; i < linha; i++){
-            for(int j = 0; j < coluna; j++){
-                tmp3.elemento = tmp.elemento + tmp2.elemento;
-                tmp = tmp.dir;
-                tmp2 = tmp2.dir;
-                tmp3 = tmp3.dir;
+        for (int i = 0; i < linha; i++) {
+            for (int j = 0; j < coluna; j++) {
+                System.out.print(u.elemento + " ");
+                u = u.dir;
             }
-            linhaAnterior = linhaAnterior.inf;
-            linhaAnterior2 = linhaAnterior2.inf;
-            linhaAnterior3 = linhaAnterior3.inf;
-            tmp = linhaAnterior;
-            tmp2 = linhaAnterior2;
-            tmp3 = linhaAnterior3;
+            System.out.println();
+            y = y.inf;
+            u = y;
         }
-
-        return m3;
     }
 
-    public Matriz multiplica(Matriz m2){
-        Matriz m3 = new Matriz();
-        Celula tmp = this.inicio;
-        Celula tmp2 = m2.inicio;
-        Celula tmp3 = m3.inicio;
-        Celula linhaAnterior = this.inicio;
-        Celula linhaAnterior2 = m2.inicio;
-        Celula linhaAnterior3 = m3.inicio;
+    Matriz soma(Matriz m2) {
+        Celula y1, y2, u1, u2;
+        y1 = u1 = this.inicio;
+        y2 = u2 = m2.inicio;
+        int index = 0;
+        int tmp[] = new int[linha * coluna];
 
-        for(int i = 0; i < linha; i++){
-            for(int j = 0; j < coluna; j++){
-                tmp3.elemento = tmp.elemento * tmp2.elemento;
-                tmp = tmp.dir;
-                tmp2 = tmp2.dir;
-                tmp3 = tmp3.dir;
+        for (int i = 0; i < linha; i++) {
+            for (int j = 0; j < coluna; j++) {
+                tmp[index++] = u1.elemento + u2.elemento;
+                u1 = u1.dir;
+                u2 = u2.dir;
             }
-            linhaAnterior = linhaAnterior.inf;
-            linhaAnterior2 = linhaAnterior2.inf;
-            linhaAnterior3 = linhaAnterior3.inf;
-            tmp = linhaAnterior;
-            tmp2 = linhaAnterior2;
-            tmp3 = linhaAnterior3;
+            y1 = y1.inf;
+            u1 = y1;
+            y2 = y2.inf;
+            u2 = y2;
         }
 
-        return m3;
+        Matriz soma = new Matriz(linha, coluna);
+        soma.criarMatriz();
+        soma.inserir(tmp);
+        return soma;
     }
 
+    void mostrarDiagonalPrincipal() {
+        Celula u, y;
+        u = y = inicio;
+
+        for (int i = 0; i < linha; i++) {
+            for (int j = 0; j < coluna; j++) {
+                if (i == j)
+                    System.out.print(u.elemento + " ");
+                u = u.dir;
+            }
+            y = y.inf;
+            u = y;
+        }
+        System.out.println();
+    }
+
+    void mostrarDiagonalSecundaria() {
+        Celula u, y;
+        u = y = inicio;
+
+        for (int i = 0; i < linha; i++) {
+            for (int j = 0; j < coluna; j++) {
+                if (i + j == linha - 1)
+                    System.out.print(u.elemento + " ");
+                u = u.dir;
+            }
+            y = y.inf;
+            u = y;
+        }
+        System.out.println();
+    }
+
+    Matriz multiplicacao(Matriz m2) {
+        Celula y1, y2, u1, u2;
+        y1 = u1 = this.inicio;
+        y2 = u2 = m2.inicio;
+        int index = 0;
+        int tmp[] = new int[linha * coluna];
+
+        for (int i = 0; i < coluna; i++) {
+            for (int t = 0; t < linha; t++) {
+                for (int j = 0; j < linha; j++) {
+                    tmp[index] += u1.elemento * y2.elemento;
+                    u1 = u1.dir;
+                    y2 = y2.inf;
+                }
+                index++;
+                u1 = y1;
+                u2 = u2.dir;
+                y2 = u2;
+            }
+            y1 = y1.inf;
+            u1 = y1;
+            u2 = y2 = m2.inicio;
+        }
+
+        Matriz multi = new Matriz(linha, coluna);
+        multi.criarMatriz();
+        multi.inserir(tmp);
+        return multi;
+    }
 }
-
 class Q09 {
-    public static void main(String[] args){
-        int n = MyIO.readInt();
-        for(int i = 0; i < n; i++){
-            int l = MyIO.readInt();
-            int c = MyIO.readInt();
-            Matriz m1 = new Matriz(l, c);
-            m1.inserir();
+
+    public static void main(String args[]) {
+        int instancias = MyIO.readInt();
+
+        for (int i = 0; i < instancias; i++) {
+            int linhas = MyIO.readInt();
+            int colunas = MyIO.readInt();
+            Matriz m1 = new Matriz(linhas, colunas);
+            m1.ler();
+            linhas = MyIO.readInt();
+            colunas = MyIO.readInt();
+            Matriz m2 = new Matriz(linhas, colunas);
+            m2.ler();
+            Matriz soma = m1.soma(m2);
             m1.mostrarDiagonalPrincipal();
             m1.mostrarDiagonalSecundaria();
-
-            l = MyIO.readInt();
-            c = MyIO.readInt();
-            Matriz m2 = new Matriz(l, c);
-            m2.inserir();
-
-            Matriz m3 = m1.soma(m2);
-            m3.mostrar(l, c);
-
-            m3 = m1.multiplica(m2);
-            m3.mostrar(l, c);
-
+            soma.mostrar();
+            Matriz multiplicacao = m1.multiplicacao(m2);
+            multiplicacao.mostrar();
         }
-
     }
 }
