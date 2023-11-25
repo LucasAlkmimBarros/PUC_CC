@@ -1,0 +1,41 @@
+ORG 0000H
+
+LXI H, arr ; Endereço do início do array
+MOV B, 05 ; Número de elementos no array
+
+BSORT_OUTER_LOOP:
+    MOV A, B
+    DCX A
+    MOV B, A
+
+    MOV L, 00
+
+BSORT_INNER_LOOP:
+    MOV A, M
+    INX H
+    CMP M
+    JZ BSORT_SKIP_SWAP
+
+    JC BSORT_DO_SWAP
+    JMP BSORT_CONTINUE
+
+BSORT_DO_SWAP:
+    MOV E, A
+    MOV A, M
+    MOV M, E
+    MOV A, E
+
+BSORT_CONTINUE:
+    INX L
+    DJNZ BSORT_INNER_LOOP
+
+BSORT_SKIP_SWAP:
+    DCX B
+    JNZ BSORT_OUTER_LOOP
+
+HLT
+
+arr DB 34, 12, 45, 9, 67
+
+END
+

@@ -1,0 +1,42 @@
+ORG 0000H
+
+LXI H, 0050H
+MOV B, M
+INX H
+MOV C, M
+
+IMUL_LOOP:
+    CMP 00
+    JZ IMUL_DONE
+
+    CALL MULTIPLY
+    JMP IMUL_LOOP
+
+IMUL_DONE:
+    MOV dado03, D
+
+HLT
+
+MULTIPLY:
+    MOV A, B
+    MOV D, A
+    MOV A, C
+    CALL F_ADD
+    MOV B, A
+    JMP RET_MULTIPLY
+
+RET_MULTIPLY:
+    RET
+
+F_ADD:
+    LDA A, 00
+    MOV D, B
+    MOV E, C
+    MOV A, D
+    ADD E
+    RET
+
+dado03 DB 00
+
+END
+

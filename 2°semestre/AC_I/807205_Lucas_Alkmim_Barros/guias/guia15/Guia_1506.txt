@@ -1,0 +1,29 @@
+// Guia_1506.txt
+// 807205 - Lucas Alkmim Barros
+
+; Início do programa
+ORG 1000H ; Endereço de início do programa
+
+; Carregar dado01
+MOV A, dado01 ; Carrega dado01 no acumulador (A)
+
+; Multiplicar dado01 por 3
+ADD A ; Soma o acumulador (A) a ele mesmo, triplicando o resultado
+ADD A ; Soma novamente, quadruplicando o resultado
+
+; Agora, o acumulador (A) contém 3 * dado01
+
+; Carregar 2 * dado02
+MOV B, dado02 ; Carrega dado02 no registrador B
+ADD B ; Soma B ao acumulador (A), resultando em 2 * dado02
+
+; Subtrair 2 * dado02 de 3 * dado01
+SUB B ; Subtrai 2 * dado02 do acumulador (A)
+
+; O resultado está no acumulador (A)
+
+; Armazenar o resultado em dado03
+MOV dado03, A ; Armazena o resultado em dado03
+
+HLT ; Halt - Fim do programa
+

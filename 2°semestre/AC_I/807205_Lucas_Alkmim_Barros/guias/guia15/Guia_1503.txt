@@ -1,0 +1,42 @@
+// Guia_1503.txt
+// 807205 - Lucas Alkmim Barros
+
+; Início do programa
+ORG 1000H ; Endereço de início do programa
+
+; Carregar dado01
+MOV A, dado01 ; Carrega dado01 no acumulador (A)
+
+; Subtrair dado02
+SUB dado02 ; Subtrai dado02 do acumulador (A)
+
+; Subtrair dado03
+SUB dado03 ; Subtrai dado03 do acumulador (A)
+
+; Agora, o resultado está no acumulador (A)
+
+; Verificar se o resultado é maior que 9 (necessário para conversão BCD)
+ANI 0FH ; Máscara para obter o dígito das unidades
+CPI 0AH ; Compara com 10
+JNC ConverteBCD ; Se o resultado for maior ou igual a 10, converte para BCD
+
+; Se o resultado não precisar de conversão BCD, armazenar diretamente
+MOV dado04, A ; Armazena o resultado em dado04
+
+HLT ; Halt - Fim do programa
+
+; Sub-rotina para converter o resultado para BCD
+ConverteBCD:
+  MOV B, A ; Armazena o resultado original em B
+
+  ; Divide o resultado por 10 (quociente em A, resto em B)
+  MOV A, B ; Move o resultado original para o acumulador (A)
+  MOV B, 0AH ; Divisor (10)
+  DIV B ; Divide A por B
+
+  ; O quociente (A) é o dígito das dezenas, o resto (B) é o dígito das unidades
+  MOV dado04, A ; Armazena o dígito das dezenas em dado04
+  MOV A, B ; Move o dígito das unidades para o acumulador (A)
+  MOV dado04 + 1, A ; Armazena o dígito das unidades em dado04 + 1
+
+HLT ; Halt - Fim da sub-rotina

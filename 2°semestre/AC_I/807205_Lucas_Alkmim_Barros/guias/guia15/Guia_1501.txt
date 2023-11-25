@@ -1,0 +1,26 @@
+// Guia_1501.txt
+// 807205 - Lucas Alkmim Barros
+
+; Início do programa
+ORG 1000H ; Endereço de início do programa
+
+MOV B, dado01 ; Carrega dado01 no registrador B
+MOV C, dado02 ; Carrega dado02 no registrador C
+MOV D, dado03 ; Carrega dado03 no registrador D
+
+ADD B ; Soma B com o acumulador (A)
+MOV E, A ; Move o resultado para o registrador E
+
+MOV A, D ; Move dado03 para o acumulador (A)
+SUB C ; Subtrai C do acumulador (A)
+MOV D, A ; Move o resultado para o registrador D
+
+MOV A, E ; Move o resultado da soma de dado01 e dado02 para o acumulador (A)
+SUB D ; Subtrai D do acumulador (A)
+
+; Agora, o resultado está no acumulador (A)
+
+; Se desejar, você pode armazenar o resultado em uma variável, por exemplo:
+MOV resultado, A ; Armazena o resultado na variável 'resultado'
+
+HLT ; Halt - Fim do programa

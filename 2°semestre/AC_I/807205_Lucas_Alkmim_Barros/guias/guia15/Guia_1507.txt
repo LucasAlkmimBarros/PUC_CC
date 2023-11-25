@@ -1,0 +1,36 @@
+// Guia_1507.txt
+// 807205 - Lucas Alkmim Barros
+
+ORG 0000H ; Início do programa
+
+MVI B, 00H ; Inicializa o registrador B com 0
+MVI C, 04H ; Inicializa o registrador C com 4
+
+LXI H, dados ; Carrega o endereço dos dados
+MOV A, M ; Move o dado01 para o registrador A
+ANI 01H ; Limpa todos os bits exceto o menos significativo
+MOV D, A ; Move o resultado para o registrador D
+
+LXI H, dados+1 ; Carrega o endereço do segundo dado
+MOV A, M ; Move o dado02 para o registrador A
+MOV E, A ; Move o dado02 para o registrador E
+
+CALL DIVIDE ; Chama a sub-rotina para dividir dado02 por 4
+MOV E, A ; Move o resultado da divisão para o registrador E
+
+ADD D ; Adiciona o resultado da expressão anterior (dado01 % 2) a E
+MOV A, E ; Move o resultado final para o registrador A
+
+HLT ; Termina a execução do programa
+
+; Sub-rotina para dividir por 4
+DIVIDE: MOV A, E ; Move o dado02 para o registrador A
+RRC ; Rotaciona os bits para a direita (divisão por 2)
+RRC ; Rotaciona novamente (divisão por 2^2 = 4)
+MOV E, A ; Move o resultado para o registrador E
+RET ; Retorna da sub-rotina
+
+dados: DB 07H ; dado01
+       DB 20H ; dado02
+
+END ; Fim do programa

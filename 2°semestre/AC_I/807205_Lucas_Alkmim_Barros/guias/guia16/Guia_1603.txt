@@ -1,0 +1,40 @@
+ORG 0000H
+
+LXI H, 0050H
+MOV B, M
+INX H
+MOV C, M
+
+IMOD_LOOP:
+    CMP C
+    JC IMOD_DONE
+
+    CALL MODULUS
+    JMP IMOD_LOOP
+
+IMOD_DONE:
+    MOV dado03, B
+
+HLT
+
+MODULUS:
+    MOV D, 00
+    MOV E, B
+    MOV A, C
+
+MOD_LOOP:
+    CMP E
+    JC MOD_DONE
+
+    SUB C
+    MOV E, A
+    INX D
+    JMP MOD_LOOP
+
+MOD_DONE:
+    RET
+
+dado03 DB 00
+
+END
+

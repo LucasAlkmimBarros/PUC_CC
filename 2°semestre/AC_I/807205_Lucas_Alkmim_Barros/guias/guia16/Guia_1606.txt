@@ -1,0 +1,42 @@
+ORG 0000H
+
+LXI H, dado01
+MOV B, M
+
+SQUARE_LOOP:
+    CALL SQUARE
+    MOV dado02, A
+
+HLT
+
+SQUARE:
+    MOV A, B
+    CALL F_ADD
+    MOV B, A
+    RET
+
+F_ADD:
+    MOV C, 00
+    MOV D, 00
+    MOV E, B
+    MOV B, 01
+    CALL ADD_ODD
+    RET
+
+ADD_ODD:
+    MOV A, E
+    ADD B
+    MOV E, A
+    MOV A, D
+    ADC 00
+    MOV D, A
+    MOV A, B
+    ADD 02
+    MOV B, A
+    RET
+
+dado01 DB 5
+dado02 DB 00
+
+END
+

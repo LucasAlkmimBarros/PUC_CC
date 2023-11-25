@@ -132,6 +132,7 @@ class Arvore{
 		return resp;
 	}
 
+
 	public static void main(String[] args){
 		Arvore a = new Arvore();
 		

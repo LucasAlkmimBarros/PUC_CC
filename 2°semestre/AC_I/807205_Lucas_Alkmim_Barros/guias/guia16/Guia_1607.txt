@@ -1,0 +1,43 @@
+ORG 0000H
+
+LXI H, dado01
+MOV B, M
+
+CALL FACTORIAL
+MOV dado02, A
+
+HLT
+
+FACTORIAL:
+    MOV A, B
+    CALL F_MULTIPLY
+    MOV B, A
+    RET
+
+F_MULTIPLY:
+    MOV C, 00
+    MOV D, 00
+    MOV E, B
+    MOV B, 01
+    CALL F_ADD
+    RET
+
+F_ADD:
+    MOV A, D
+    ADD E
+    MOV D, A
+    MOV A, B
+    ADC 00
+    MOV B, A
+    MOV A, E
+    ADD 01
+    MOV E, A
+    CMP B
+    JC F_ADD
+    RET
+
+dado01 DB 5
+dado02 DB 00
+
+END
+

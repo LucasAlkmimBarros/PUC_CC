@@ -1,0 +1,43 @@
+ORG 0000H
+
+LXI H, dado01
+MOV A, M
+CALL BCD_TO_HEX
+MOV B, A
+
+INX H
+MOV A, M
+CALL BCD_TO_HEX
+ADD B
+MOV dado02, A
+
+HLT
+
+BCD_TO_HEX:
+    RLC
+    RLC
+    RLC
+    RLC
+    MOV B, 10
+    CALL MULTIPLY
+    RET
+
+MULTIPLY:
+    MOV D, 00
+    MOV E, A
+    MOV A, B
+    CALL F_ADD
+    MOV B, A
+    RET
+
+F_ADD:
+    MOV A, D
+    ADD E
+    MOV D, A
+    RET
+
+dado01 DB 24
+dado02 DB 00
+
+END
+

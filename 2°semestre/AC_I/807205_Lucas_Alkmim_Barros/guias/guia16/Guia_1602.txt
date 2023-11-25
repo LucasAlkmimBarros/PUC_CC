@@ -1,0 +1,41 @@
+ORG 0000H
+
+LXI H, 0050H
+MOV B, M
+INX H
+MOV C, M
+
+IDIV_LOOP:
+    CMP C
+    JC IDIV_DONE
+
+    CALL DIVIDE
+    JMP IDIV_LOOP
+
+IDIV_DONE:
+    MOV dado03, A
+
+HLT
+
+DIVIDE:
+    MOV D, 00
+    MOV E, B
+    MOV A, C
+
+DIV_LOOP:
+    CMP E
+    JC DIV_DONE
+
+    SUB C
+    MOV E, A
+    INX D
+    JMP DIV_LOOP
+
+DIV_DONE:
+    MOV A, D
+    RET
+
+dado03 DB 00
+
+END
+

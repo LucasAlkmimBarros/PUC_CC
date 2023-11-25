@@ -1,0 +1,53 @@
+// Guia_1502.txt
+// 807205 - Lucas Alkmim Barros
+
+; Início do programa
+ORG 1000H ; Endereço de início do programa
+
+; Carregar dado01
+MOV B, dado01_h ; Carrega a parte alta de dado01 no registrador B
+MOV C, dado01_l ; Carrega a parte baixa de dado01 no registrador C
+
+; Subtrair dado02
+MOV D, dado02_h ; Carrega a parte alta de dado02 no registrador D
+MOV E, dado02_l ; Carrega a parte baixa de dado02 no registrador E
+
+CALL Subtrair ; Chama a sub-rotina de subtração
+
+; Adicionar dado03
+MOV D, dado03_h ; Carrega a parte alta de dado03 no registrador D
+MOV E, dado03_l ; Carrega a parte baixa de dado03 no registrador E
+
+CALL Adicionar ; Chama a sub-rotina de adição
+
+; O resultado está em DE (parte alta em D, parte baixa em E)
+
+; Se desejar, você pode armazenar o resultado em uma variável, por exemplo:
+MOV resultado_h, D ; Armazena a parte alta do resultado na variável 'resultado_h'
+MOV resultado_l, E ; Armazena a parte baixa do resultado na variável 'resultado_l'
+
+HLT ; Halt - Fim do programa
+
+; Sub-rotina de subtração (Subtrai DE de BC, resultado em DE)
+Subtrair:
+  MOV A, E ; Move a parte baixa de dado02 para o acumulador (A)
+  SUB C ; Subtrai a parte baixa de dado02 do acumulador (A)
+  MOV E, A ; Move o resultado para a parte baixa de DE
+
+  MOV A, D ; Move a parte alta de dado02 para o acumulador (A)
+  SBB B ; Subtrai a parte alta de dado02 do acumulador (A) considerando o carry
+  MOV D, A ; Move o resultado para a parte alta de DE
+
+  RET ; Retorna da sub-rotina
+
+; Sub-rotina de adição (Adiciona DE a BC, resultado em DE)
+Adicionar:
+  MOV A, E ; Move a parte baixa de dado03 para o acumulador (A)
+  ADD C ; Adiciona a parte baixa de dado03 ao acumulador (A)
+  MOV E, A ; Move o resultado para a parte baixa de DE
+
+  MOV A, D ; Move a parte alta de dado03 para o acumulador (A)
+  ADC B ; Adiciona a parte alta de dado03 ao acumulador (A) considerando o carry
+  MOV D, A ; Move o resultado para a parte alta de DE
+
+  RET ; Retorna da sub-rotina
