@@ -206,20 +206,22 @@ class ArvoreArvore {
     }
 
     public void inserir(Jogador j) { // Primeira chamada inserir jogador
-        inserir(j, raiz);
+        raiz = inserir(j, raiz);
     }
 
-    public void inserir(Jogador j, No i) { //Encontrar a arvore certa para inserir o jogador
+    public No inserir(Jogador j, No i) { // Encontrar a árvore certa para inserir o jogador
         if (i != null) {
             int chave = j.getAltura() % 15;
             if (i.chave > chave) {
-                inserir(j, i.esq);
+                i.esq = inserir(j, i.esq);
             } else if (i.chave < chave) {
-                inserir(j, i.dir);
+                i.dir = inserir(j, i.dir);
             } else {
                 i.arvore.raiz = inserir(j.getNome(), i.arvore.raiz);
             }
         }
+
+        return i;
     }
 
     public No2 inserir(String nome, No2 i) { // Inserir nome
@@ -241,38 +243,37 @@ class ArvoreArvore {
         return mostrar(nome, raiz);
     }
 
-    public boolean mostrar(String nome, No i){
+    public boolean mostrar(String nome, No i) {
         boolean resp = false;
-        if(i != null){
-            if(!resp){
+        if (i != null) {
+            if (!resp) {
+                resp = mostrar(nome, i.arvore.raiz);
+            }
+            if (!resp) {
                 System.out.print(" esq");
                 resp = mostrar(nome, i.esq);
             }
-            if(!resp){
+            if (!resp) {
                 System.out.print(" dir");
                 resp = mostrar(nome, i.dir);
             }
-            if(!resp){
-                resp = mostrar(nome, i.arvore.raiz);
-            }
         }
 
         return resp;
     }
 
-    public boolean mostrar(String nome, No2 i){
+    public boolean mostrar(String nome, No2 i) {
         boolean resp = false;
-        if(i != null){
-            if(nome.compareTo(i.nome) < 0){
-                System.out.print(" ESQ");
-                mostrar(nome, i.esq);
-            }
-            else if(nome.compareTo(i.nome) > 0){
-                System.out.print(" DIR");
-                mostrar(nome, i.dir);
-            }
-            else{
+        if (i != null) {
+            if (nome.equals(i.nome)) {
                 resp = true;
+            } else {
+                System.out.print(" ESQ");
+                resp = mostrar(nome, i.esq);
+                if (!resp) {
+                    System.out.print(" DIR");
+                    resp = mostrar(nome, i.dir);
+                }
             }
         }
 
@@ -281,13 +282,13 @@ class ArvoreArvore {
 
 }
 
-class Arvore {
-    No2 raiz;
+    class Arvore {
+        No2 raiz;
 
-    Arvore() {
-        raiz = null;
+        Arvore() {
+            raiz = null;
+        }
     }
-}
 
 class Q02 {
 
@@ -319,6 +320,7 @@ class Q02 {
 
         entrada = sc.nextLine();
 
+
         while (!(entrada.equals("FIM"))) {
             if (playersClone.mostrar(entrada)) {
                 System.out.println(" SIM");
@@ -332,3 +334,4 @@ class Q02 {
         sc.close();
     }
 }
+
