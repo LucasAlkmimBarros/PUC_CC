@@ -175,14 +175,14 @@ class ArvoreArvore {
         inserir(1);
         inserir(5);
         inserir(9);
-        inserir(13);
+        inserir(12);
         inserir(0);
         inserir(2);
         inserir(4);
         inserir(6);
         inserir(8);
         inserir(10);
-        inserir(12);
+        inserir(13);
         inserir(14);
 
     }
