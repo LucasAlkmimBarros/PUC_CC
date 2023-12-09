@@ -178,7 +178,7 @@ public class AVL {
 	 * @param j No da subarvore esquerda.
 	 * @return No em analise, alterado ou nao.
 	 */
-	private No maiorEsq(No i, No j) {
+	private No  maiorEsq(No i, No j) {
 		// Encontrou o maximo da subarvore esquerda.
 		if (j.dir == null) {
 			i.elemento = j.elemento; // Substitui i por j.

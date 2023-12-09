@@ -153,12 +153,18 @@ class NoAN {
 
 class ArvoreAN {
     public NoAN raiz;
-    public int comparacoes;
+    public int comparacoes = 0;
 
     public ArvoreAN() {
         raiz = null;
     }
 
+
+    /**
+     * Metodo para inserir elemento na arvore.
+     * 
+     * @param jogador Elemento a ser inserido.
+     */
     public void inserir(Jogador jogador){
         if(raiz == null){ // 0 elementos
             raiz = new NoAN(jogador);
@@ -207,6 +213,16 @@ class ArvoreAN {
         raiz.cor = false;
     }
 
+
+    /**
+     * Metodo recursivo para inserir elemento.
+     * 
+     * @param jogador Elemento a ser inserido.
+     * @param bisavo NoAN bisavo
+     * @param avo NoAN avo
+     * @param pai NoAN pai
+     * @param i NoAN filho
+     */
     public void inserir(Jogador jogador, NoAN bisavo, NoAN avo, NoAN pai, NoAN i){
         if (i == null) {
             if (jogador.getNome().compareTo(pai.jogador.getNome()) < 0) {
@@ -237,6 +253,15 @@ class ArvoreAN {
         }
     }
 
+
+    /**
+     * Metodo para balancear a arvore apos insercao.
+     * 
+     * @param bisavo NoAN bisavo
+     * @param avo NoAN avo
+     * @param pai NoAN pai
+     * @param i NoAN filho
+     */
     public void balancear(NoAN bisavo, NoAN avo, NoAN pai, NoAN i) {
         if (pai.cor == true) {
             if (pai.jogador.getNome().compareTo(avo.jogador.getNome()) > 0) {
@@ -266,6 +291,13 @@ class ArvoreAN {
         }
     }
 
+
+    /**
+     * Metodo para rotacionar a arvore a esquerda.
+     * 
+     * @param no NoAN no
+     * @return NoAN no rotacionado
+     */
     public NoAN rotacaoDir(NoAN no) {
         NoAN noEsq = no.esq;
         NoAN noEsqDir = noEsq.dir;
@@ -276,6 +308,13 @@ class ArvoreAN {
         return noEsq;
     }
 
+
+    /**
+     * Metodo para rotacionar a arvore a direita.
+     * 
+     * @param no NoAN no
+     * @return NoAN no rotacionado
+     */
     public NoAN rotacaoEsq(NoAN no) {
         NoAN noDir = no.dir;
         NoAN noDirEsq = noDir.esq;
@@ -285,20 +324,49 @@ class ArvoreAN {
         return noDir;
     }
 
+
+    /**
+     * Metodo para rotacionar a arvore a direita e depois a esquerda.
+     * 
+     * @param no NoAN no
+     * @return NoAN no rotacionado
+     */
     public NoAN rotacaoDirEsq(NoAN no) {
         no.dir = rotacaoDir(no.dir);
         return rotacaoEsq(no);
     }
 
+
+    /**
+     * Metodo para rotacionar a arvore a esquerda e depois a direita.
+     * 
+     * @param no NoAN no
+     * @return NoAN no rotacionado
+     */
     public NoAN rotacaoEsqDir(NoAN no) {
         no.esq = rotacaoEsq(no.esq);
         return rotacaoDir(no);
     }
 
+
+    /**
+     * Metodo para pesquisar um elemento na arvore.
+     * 
+     * @param nome Nome do elemento a ser pesquisado.
+     * @return <code>true</code> se o elemento estiver na arvore, <code>false</code> caso contrario.
+     */
     public boolean pesquisar(String nome){
         return pesquisar(nome, raiz);
     }
 
+
+    /**
+     * Metodo para pesquisar um elemento na arvore.
+     * 
+     * @param nome Nome do elemento a ser pesquisado.
+     * @param i NoAN no em analise.
+     * @return <code>true</code> se o elemento estiver na arvore, <code>false</code> caso contrario.
+     */
     public boolean pesquisar(String nome, NoAN i){
         boolean resp = false;
         comparacoes++;

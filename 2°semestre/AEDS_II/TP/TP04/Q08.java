@@ -127,6 +127,7 @@ class Jogador {
 }
 
 class Hash {
+    public int comperacoes = 0;
     public Jogador[] tabela;
     public int m;
 
@@ -139,16 +140,31 @@ class Hash {
         this.tabela = new Jogador[this.m];
     }
 
+
+    /**
+     * Metodo de hash
+     * @param jogador jogador que queremos saber a posicao na tabela
+     * @return Posicao do jogador na tabela
+     */
     public int h(Jogador jogador) {
-        int pos = jogador.getAltura() % m;
-        return pos;
+        return jogador.getAltura() % m;
     }
 
+    /**
+     * Metodo de rehash
+     * @param jogador jogador que queremos saber a posicao na tabela
+     * @return Posicao do jogador na tabela + 1
+     */
     public int reh(Jogador jogador) {
-        int pos = (jogador.getAltura() + 1) % m;
-        return pos;
+        return (jogador.getAltura() + 1) % m;
     }
 
+
+    /**
+     * Insere um jogador na tabela
+     * @param jogador jogador a ser inserido
+     * @return true se o jogador foi inserido, false caso contrario
+     */
     public boolean inserir(Jogador jogador) {
         boolean resp = false;
         if (jogador != null) {
@@ -168,10 +184,17 @@ class Hash {
         return resp;
     }
 
+
+    /**
+     * Pesquisa um jogador na tabela
+     * @param nome Nome do jogador a ser pesquisado
+     * @return true se o jogador estiver na tabela, false caso contrario
+     */
     public boolean pesquisar(String nome) {
         boolean resp = false;
         for (int i = 0; i < m; i++) {
             if (tabela[i] != null) {
+                comperacoes++;
                 if (tabela[i].getNome().equals(nome)) {
                     resp = true;
                 }
@@ -210,15 +233,9 @@ public class Q08 {
             entrada = sc.nextLine();
         }
 
-        //printando a tabela
-        for (int i = 0; i < playersClone.m; i++) {
-            if (playersClone.tabela[i] != null) {
-                System.out.println(playersClone.tabela[i].getId() + " " + playersClone.tabela[i].getNome());
-            }
-        }
-
         entrada = sc.nextLine();
 
+        long inicio = System.currentTimeMillis();
         while (!(entrada.equals("FIM"))) {
             System.out.print(entrada);
             if (playersClone.pesquisar(entrada)) {
@@ -229,9 +246,11 @@ public class Q08 {
 
             entrada = sc.nextLine();
         }
+        long fim = System.currentTimeMillis();
 
+        long tempo = fim - inicio;
         arq.openWrite("807205_hashRehash.txt");
-        arq.print("807205");
+        arq.print("807205" + "\t" + tempo + "\t" + playersClone.comperacoes);
         arq.close();
     }
 }

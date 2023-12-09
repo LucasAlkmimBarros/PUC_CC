@@ -123,6 +123,8 @@ void clone(Jogador *jogador, Jogador *novo){ //Funcao para clonar um jogador
     strcpy(novo->estadoNascimento, jogador->estadoNascimento);
 }
 
+int comp = 0;
+
 struct Celula;
 
 typedef struct Celula{
@@ -130,6 +132,13 @@ typedef struct Celula{
     struct Celula *prox;
 } Celula;
 
+
+/**
+ * Construtor da struct Celula
+ * 
+ * @param str String a ser inserida na celula
+ * @return Celula criada
+*/
 Celula *novaCelula(char *str){
     Celula *tmp = (Celula*)malloc(sizeof(Celula));
     strcpy(tmp->nome, str);
@@ -142,6 +151,12 @@ typedef struct {
     Celula *ultimo;
 } Lista;
 
+
+/**
+ * Construtor da struct Lista
+ * 
+ * @return Lista criada
+*/
 Lista *novaLista(){
     Lista *tmp = (Lista*)malloc(sizeof(Lista));
     tmp->primeiro = novaCelula("");
@@ -149,11 +164,26 @@ Lista *novaLista(){
     return tmp;
 }
 
+
+/**
+ * Insere uma string na lista
+ * 
+ * @param nome String a ser inserida
+ * @param lista Lista a ser inserida
+*/
 void inserirLista(char *nome, Lista *lista){
     lista->ultimo->prox = novaCelula(nome);
     lista->ultimo = lista->ultimo->prox;
 }
 
+
+/**
+ * Busca uma string na lista
+ * 
+ * @param nome String a ser buscada
+ * @param lista Lista a ser buscada
+ * @return True se a string estiver na lista, false caso contrario
+*/
 bool buscarLista(char *nome, Lista *lista){
     bool resp = false;
     Celula *i;
@@ -171,6 +201,12 @@ typedef struct {
     int tam;
 } Hash;
 
+
+/**
+ * Construtor da struct Hash
+ * 
+ * @return Hash criada
+*/
 Hash *novaHash(){
     Hash *tmp = (Hash*)malloc(sizeof(Hash));
     tmp->tam = 25;
@@ -181,18 +217,40 @@ Hash *novaHash(){
 }
 
 
+/**
+ * Funcao hash
+ * 
+ * @param altura Altura do jogador
+ * @return Posicao na tabela hash
+*/
 int hash(int altura){
     return altura % 25;
 }
 
+
+/**
+ * Insere um jogador na tabela hash
+ * 
+ * @param jogador Jogador a ser inserido
+ * @param tabelaHash Tabela hash a ser inserido
+*/
 void inserirHash(Jogador *jogador, Hash *tabelaHash){
     int pos = hash(jogador->altura);
     inserirLista(jogador->nome, tabelaHash->tabela[pos]);
 }
 
+
+/**
+ * Busca um jogador na tabela hash
+ * 
+ * @param nome Nome do jogador a ser buscado
+ * @param hash Tabela hash a ser buscada
+ * @return True se o jogador estiver na tabela hash, false caso contrario
+*/
 bool buscarHash(char *nome, Hash *hash){
     bool resp = false;
     for(int i = 0; i < hash->tam; i++){
+        comp++;
         if(buscarLista(nome, hash->tabela[i]) == true){
             resp = true;
             i = hash->tam;
@@ -237,6 +295,8 @@ int main(){
     getchar();
     scanf(" %[^\n]", nome);
 
+    double start = clock();
+
     while(strcmp(nome, "FIM") != 0){ //Verificando se existe 
         printf("%s ", nome);
         if(buscarHash(nome, hash) == true){
@@ -250,6 +310,15 @@ int main(){
         scanf(" %[^\n]", nome);
 
     }
+
+    double end = clock();
+
+    double time = (end - start) / (CLOCKS_PER_SEC / 1000);
+
+    FILE *arq2;
+    arq2 = fopen("807205_hashIndireta.txt", "w");
+
+    fprintf(arq2, "807205\t%f\t%i", time, comp);
 
     return 0;
 }

@@ -166,7 +166,11 @@ class No2 {
 
 class ArvoreArvore {
     No raiz;
+    int comparacoes = 0;
 
+    /**
+     * Construtor da classe.
+     */
     ArvoreArvore() {
         // 7, 3, 11, 1, 5, 9, 13, 0, 2, 4, 6, 8, 10, 12 e 14
         inserir(7);
@@ -187,10 +191,24 @@ class ArvoreArvore {
 
     }
 
+
+    /**
+     * Insere um elemento na árvore.
+     * 
+     * @param elemento int elemento a ser inserido.
+     *
+     */
     public void inserir(int chave) { // Primeira chamada inserir chave
         raiz = inserir(chave, raiz);
     }
 
+
+    /**
+     * Insere um elemento na árvore.
+     * 
+     * @param elemento int elemento a ser inserido.
+     * @return No no em analise.
+     */
     public No inserir(int chave, No i) { // Inserir chave
         if (i == null) {
             i = new No(chave);
@@ -205,10 +223,24 @@ class ArvoreArvore {
         return i;
     }
 
+
+    /**
+     * Insere um jogador na árvore.
+     * 
+     * @param jogador Jogador a ser inserido.
+     *
+     */
     public void inserir(Jogador j) { // Primeira chamada inserir jogador
         raiz = inserir(j, raiz);
     }
 
+
+    /**
+     * Insere um jogador na árvore.
+     * 
+     * @param jogador Jogador a ser inserido.
+     * @return No no em analise.
+     */
     public No inserir(Jogador j, No i) { // Encontrar a árvore certa para inserir o jogador
         if (i != null) {
             int chave = j.getAltura() % 15;
@@ -224,6 +256,13 @@ class ArvoreArvore {
         return i;
     }
 
+
+    /**
+     * Insere um nome na árvore.
+     * 
+     * @param nome String nome a ser inserido.
+     *
+     */
     public No2 inserir(String nome, No2 i) { // Inserir nome
         if (i == null) {
             i = new No2(nome);
@@ -238,11 +277,27 @@ class ArvoreArvore {
         return i;
     }
 
+
+    /**
+     * Mostra os elementos da árvore em ordem.
+     * 
+     * @param nome String nome a ser procurado.
+     * @return boolean resp.
+     */
     public boolean mostrar(String nome) {
         System.out.print(nome + " raiz");
         return mostrar(nome, raiz);
     }
 
+
+    /**
+     * Mostra os elementos da árvore em ordem.
+     * 
+     * @param nome String nome a ser procurado.
+     * @param i No no em analise.
+     * 
+     * @return boolean resp.
+     */
     public boolean mostrar(String nome, No i) {
         boolean resp = false;
         if (i != null) {
@@ -262,6 +317,15 @@ class ArvoreArvore {
         return resp;
     }
 
+
+    /**
+     * Mostra os elementos da árvore em ordem.
+     * 
+     * @param nome String nome a ser procurado.
+     * @param i No no em analise.
+     * 
+     * @return boolean resp.
+     */
     public boolean mostrar(String nome, No2 i) {
         boolean resp = false;
         if (i != null) {
@@ -320,6 +384,7 @@ class Q02 {
 
         entrada = sc.nextLine();
 
+        long inicio = System.currentTimeMillis();
 
         while (!(entrada.equals("FIM"))) {
             if (playersClone.mostrar(entrada)) {
@@ -331,7 +396,15 @@ class Q02 {
             entrada = sc.nextLine();
         }
 
+        long fim = System.currentTimeMillis();
+
         sc.close();
+
+        Arq log = new Arq();
+        log.openWrite("807205_arvoreArvore.txt");
+        log.print("807205\t" + (fim - inicio));
+        log.close();
+
     }
 }
 

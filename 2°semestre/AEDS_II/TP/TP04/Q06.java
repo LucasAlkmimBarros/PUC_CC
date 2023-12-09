@@ -273,10 +273,23 @@ class ArvoreTRIE{
 		}	
 	}
 
+
+    /**
+     * Primeira chamada da concatenacao
+     *
+     * @param nome nome que sera removido
+     */
 	public void concatenar(ArvoreTRIE a1, ArvoreTRIE a2){
 		concatenar(a1, a2.raiz, "");
 	}
 
+
+    /**
+     * Chamadas recursivas da concatenacao
+     *
+     * @param nome nome que sera removido
+     * @param no no que estamos no momento
+     */
 	public void concatenar(ArvoreTRIE a1, No no, String nome){
 		if(no.folha == true){
 			nome += no.letra;

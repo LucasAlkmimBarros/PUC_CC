@@ -129,6 +129,7 @@ class Jogador {
 class Hash {
     public Jogador[] tabela;
     public int m1, m2, m, reserva;
+    public int comp = 0;
 
     Hash(){
         this(21, 9);
@@ -143,10 +144,23 @@ class Hash {
         reserva = 0;
     }
 
+    /**
+     * Funcao de hash
+     * 
+     * @param jogador Jogador a ser inserido
+     * @return Posicao do jogador na tabela
+     */
     public int h(Jogador jogador){
         return jogador.getAltura() % m1;
     }
 
+
+    /**
+     * Insere um jogador na tabela
+     * 
+     * @param jogador Jogador a ser inserido
+     * @return <code>true</code> se o jogador foi inserido com sucesso
+     */
     public boolean inserir(Jogador jogador){
         boolean resp = false;
         if(jogador != null){
@@ -165,10 +179,18 @@ class Hash {
         return resp;
     }
 
+
+    /**
+     * Pesquisa um jogador na tabela
+     * 
+     * @param nome Nome do jogador a ser pesquisado
+     * @return <code>true</code> se o jogador foi encontrado
+     */
     public boolean pesquisar(String nome){
         boolean resp = false;
         for(int i = 0; i < m; i++){
             if(tabela[i] != null){
+                comp++;
                 if(tabela[i].getNome().equals(nome)){
                     resp = true;
                 }
@@ -208,6 +230,8 @@ public class Q07 {
 
         entrada = sc.nextLine();
 
+        long inicio = System.currentTimeMillis();
+
         while(!(entrada.equals("FIM"))){
             System.out.print(entrada);
             if(playersClone.pesquisar(entrada)){
@@ -220,8 +244,11 @@ public class Q07 {
             entrada = sc.nextLine();
         }
 
+        long fim = System.currentTimeMillis();
+
+        long tempo = fim - inicio;
         arq.openWrite("807205_hashReserva.txt");
-        arq.print("807205");
+        arq.print("807205" + "\t" + tempo +  "\t" + playersClone.comp);
         arq.close();
     }
 }

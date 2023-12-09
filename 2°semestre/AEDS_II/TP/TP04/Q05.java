@@ -143,16 +143,30 @@ class No{
 
 class Arvore{
     public No raiz;
-    public int comparacoes;
+    public int comparacoes = 0;
 
     Arvore(){
         raiz = null;
     }
 
+
+    /**
+     * Metodo inserir
+     * 
+     * @param jogador Jogador a ser inserido
+     */
     public void inserir(Jogador jogador){
         raiz = inserir(jogador, raiz);
     }
 
+
+    /**
+     * Metodo inserir recursivo
+     * 
+     * @param jogador Jogador a ser inserido
+     * @param i No em analise
+     * @return No em analise, alterado ou nao
+     */
     public No inserir(Jogador jogador, No i){
         if(i != null){
             if(i.jogador.getNome().compareTo(jogador.getNome()) > 0){
@@ -174,14 +188,27 @@ class Arvore{
         return i;
     }
 
+
+    /**
+     * Metodo treeSort
+     * 
+     * @param players Array de jogadores
+     */
     public void treeSort(Jogador[] players){
         treeSort(raiz, players);
     }
 
+
+    /**
+     * Metodo treeSort recursivo
+     * 
+     * @param i No em analise
+     * @param players Array de jogadores
+     */
     public void treeSort(No i, Jogador[] players){
         if(i != null){
             treeSort(i.esq, players);
-            System.out.println(i.jogador.getNome());
+            System.out.println(i.jogador.getNome()); //Imprimindo o nome do jogador
             treeSort(i.dir, players);
         }
     }
@@ -231,12 +258,14 @@ public class Q05 {
         for(int i = 0; i < pos; i++){ //Inserindo o array na arvore
             arvore.inserir(playersClone[i]);
         }
-
+        long inicio = System.currentTimeMillis();
         arvore.treeSort(playersClone);
+        long fim = System.currentTimeMillis();
 
+        long tempo = fim - inicio;
         arq = new Arq();
         arq.openWrite("807205_treesort.txt");
-        arq.print(arvore.comparacoes);
+        arq.print("807205" +  "\t" + tempo + "\t" + arvore.comparacoes);
 
         arq.close();
     }

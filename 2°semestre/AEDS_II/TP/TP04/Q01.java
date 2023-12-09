@@ -134,10 +134,24 @@ class Arvore {
         raiz = null;
     }
 
+	/**
+	 * Insere um jogador na árvore
+	 * 
+	 * @param jogador Jogador a ser inserido
+	*/
     public void inserir(Jogador jogador) {
         raiz = inserir(jogador, raiz);
     }
 
+
+	/**
+	 * Insere um jogador na árvore
+	 * 
+	 * @param jogador Jogador a ser inserido
+	 * @param i No raiz da árvore
+	 * @return No raiz da árvore
+	 * 
+	*/
     public No inserir(Jogador jogador, No i) {
         if (i == null) {
             i = new No(jogador);
@@ -153,11 +167,28 @@ class Arvore {
         return i;
     }
 
+
+	/**
+	 * Pesquisa um jogador na árvore
+	 * 
+	 * @param nome Nome do jogador a ser pesquisado
+	 * @return <code>true</code> se o jogador estiver na árvore, <code>false</code> caso contrário
+	 * 
+	*/
     public boolean pesquisar(String nome) {
         System.out.print(" raiz");
         return pesquisar(nome, raiz);
     }
 
+
+	/**
+	 * Pesquisa um jogador na árvore
+	 * 
+	 * @param nome Nome do jogador a ser pesquisado
+	 * @param i No raiz da árvore
+	 * @return <code>true</code> se o jogador estiver na árvore, <code>false</code> caso contrário
+	 * 
+	*/
     public boolean pesquisar(String nome, No i) {
         boolean resp;
         if (i == null) {
@@ -215,7 +246,7 @@ class Q01{
  
         while(!(entrada.equals("FIM"))){
             System.out.print(entrada);
-            if(playersClone.pesquisar(entrada)){
+            if(playersClone.pesquisar(entrada)){ // Pesquisa o jogador na árvore
                 System.out.println(" SIM");
             }
             else{
