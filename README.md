@@ -1,7 +1,7 @@
 ## Olá, eu sou Lucas Alkmim Barros, cientista da computação!
 
 <div>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=aura&hide_border=false&username=LucasAlkmimBarros" height="180" alt="languages graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=380&langs_count=5&theme=aura&hide_border=false&username=LucasAlkmimBarros" height="180" alt="languages graph"  />
 </div>
 
 <div style="display: inline_block"  ><br>
