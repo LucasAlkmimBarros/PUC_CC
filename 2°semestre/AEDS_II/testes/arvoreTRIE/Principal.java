@@ -25,6 +25,8 @@ class Principal{
                 }
 
 		a.mostrar();
+		System.out.println("------------");
+		a.mostrar2();
 
 	}
 }

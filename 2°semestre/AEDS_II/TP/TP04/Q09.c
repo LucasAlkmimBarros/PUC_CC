@@ -259,9 +259,19 @@ bool buscarHash(char *nome, Hash *hash){
     return resp;
 }
 
+// char *readStr(char *input){
+
+//     fgets(input, 300, stdin);
+//     input[(int)strcspn(input, "\n\r")] = '\0';
+
+//     return input;
+// }
+
+
 int main(){
     Jogador players[3923];
     char n[5];
+    char n2[5];
 
     FILE *arq;
     arq = fopen("/tmp/players.csv", "r");
@@ -281,6 +291,8 @@ int main(){
     fclose(arq);
 
     scanf("%s", n);
+    n[(int)strcspn(n, "\n\r")] = '\0';    
+
     Jogador tmp;
     Hash *hash = novaHash();
 
@@ -289,11 +301,13 @@ int main(){
 
         inserirHash(&tmp, hash);
         scanf("%s", n);
+        n[(int)strcspn(n, "\n\r")] = '\0';
     }
 
     char nome[50];
     getchar();
     scanf(" %[^\n]", nome);
+    nome[(int)strcspn(nome, "\n\r")] = '\0';
 
     double start = clock();
 
@@ -308,6 +322,7 @@ int main(){
 
         getchar();
         scanf(" %[^\n]", nome);
+        nome[(int)strcspn(nome, "\n\r")] = '\0';
 
     }
 

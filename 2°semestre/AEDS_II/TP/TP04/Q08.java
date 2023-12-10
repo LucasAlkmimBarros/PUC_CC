@@ -132,7 +132,7 @@ class Hash {
     public int m;
 
     Hash() {
-        this(25);
+        this(21);
     }
 
     Hash(int m) {

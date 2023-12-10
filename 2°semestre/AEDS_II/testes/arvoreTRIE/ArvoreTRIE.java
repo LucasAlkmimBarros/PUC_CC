@@ -82,9 +82,8 @@ class ArvoreTRIE{
 	
 
 	/**
-	 * Primeira chamada da remocao
+	 * Primeira chamada da mostar
 	 *
-	 * @param nome nome que sera removido
 	 */
 	public void mostrar(){
 		mostrar("", raiz);
@@ -92,9 +91,9 @@ class ArvoreTRIE{
 
 
 	/**
-	 * Chamadas recursivas da remocao
+	 * Chamadas recursivas da mostrar
 	 *
-	 * @param nome nome que sera removido
+	 * @param nome nome que sera mostrado
 	 * @param no no que estamos no momento
 	 */
 	public void mostrar(String nome, No no){
@@ -110,4 +109,67 @@ class ArvoreTRIE{
 
 		}	
 	}
+
+	public void mostrar2(){
+		mostrar2("", raiz);
+	}
+
+	public void mostrar2(String nome, No no){
+		if(no.folha == true){
+			if(no.letra == 'a' || no.letra == 'e' || no.letra == 'i' || no.letra == 'o' || no.letra == 'u'){
+				if(nome.length() > 4){
+					System.out.println(nome + no.letra);
+				}
+			}
+		}
+		else{
+			for(int i = 0; i < no.prox.length; i++){
+				if(no.prox[i] != null){
+					mostrar2(nome + no.letra, no.prox[i]);
+				}
+			}
+		}
+	}
+
+	public ArvoreTRIE intersecao(ArvoreTRIE a1, ArvoreTRIE a2){
+		intersecao(a1, a2.raiz, "");
+		return a1;
+	}
+
+	public void intersecao(ArvoreTRIE a1, No no, String nome){
+		if(no.folha == true){
+			a1.inserir2(nome + no.letra);
+		}
+		else{
+			for(int i = 0; i < no.prox.length; i++){
+				if(no.prox[i] != null){
+					intersecao(a1, no.prox[i], nome + no.letra);
+				}
+			}
+		}
+	}
+
+	public void inserir(String nome){
+		inserir(nome, raiz, 0);
+	}
+
+	public void inserir(String nome, No no, int i){
+		if(no.prox[nome.charAt(i)] != null){
+			no.prox[nome.charAt(i)] = new No(nome.charAt(i));
+
+			if(i < nome.length()-1){
+				inserir(nome, no.prox[i], i + 1);
+			}
+			else{
+				no.prox[nome.charAt(i)].folha = true;
+			}
+		}
+		else{
+			if(no.prox[i].folha == false && i < nome.length() -1 ){
+				inserir(nome, no.prox[nome.charAt(i)], i+1)
+			}
+		}
+	}
+
+	
 }
