@@ -149,27 +149,7 @@ class ArvoreTRIE{
 		}
 	}
 
-	public void inserir(String nome){
-		inserir(nome, raiz, 0);
-	}
 
-	public void inserir(String nome, No no, int i){
-		if(no.prox[nome.charAt(i)] != null){
-			no.prox[nome.charAt(i)] = new No(nome.charAt(i));
-
-			if(i < nome.length()-1){
-				inserir(nome, no.prox[i], i + 1);
-			}
-			else{
-				no.prox[nome.charAt(i)].folha = true;
-			}
-		}
-		else{
-			if(no.prox[i].folha == false && i < nome.length() -1 ){
-				inserir(nome, no.prox[nome.charAt(i)], i+1)
-			}
-		}
-	}
 
 	
 }
