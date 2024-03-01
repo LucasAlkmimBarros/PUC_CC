@@ -5,7 +5,9 @@ class Principal {
   public static void main(String args[]) {
 
     File f = new File("dados/livros.db");
+    File f2 = new File("dados/autores.db");
     f.delete();
+    f2.delete();
 
     Arquivo<Livro> arqLivros;
     Livro l1 = new Livro(-1, "9788563560278", "Odisseia", 15.99F);
@@ -13,7 +15,13 @@ class Principal {
     Livro l3 = new Livro();
     int id1, id2;
 
+    Arquivo<Autor> arqAutores;
+    Autor a1 = new Autor(-1, "Homer", "Grécia");
+    Autor a2 = new Autor(-1, "Clayton Christensen", "EUA");
+    Autor a3 = new Autor(-1, "J.K Rolling", "EUA");
+
     try {
+      /*
       arqLivros = new Arquivo<>("dados/livros.db", Livro.class.getConstructor());
 
       id1 = arqLivros.create(l1);
@@ -42,8 +50,50 @@ class Principal {
         System.out.println(l3);
       else
         System.out.println("Livro de ID " + id2 + " não encontrado!");
+    
+      
 
       arqLivros.close();
+      */
+
+      
+      arqAutores = new Arquivo<>("dados/autores.db", Autor.class.getConstructor());
+
+
+      id1 = arqAutores.create(a1);
+      System.out.println("Autor criado com o ID: " + id1);
+
+      id2 = arqAutores.create(a2);
+      System.out.println("Autor criado com o ID: " + id2);
+
+      if ((a1 = arqAutores.read(id1)) != null)
+      System.out.println(a1);
+      else
+      System.out.println("Autor de ID " + id1 + " não encontrado!");
+
+      a1.setNome("Homero");
+
+      if (arqAutores.update(a1))
+        System.out.println("Autor de ID " + a1.getID() + " alterado!");
+      else
+        System.out.println("Autor de ID " + a1.getID() + " não encontrado!");
+
+      if ((a1 = arqAutores.read(id1)) != null)
+        System.out.println(a1);
+      else
+        System.out.println("Autor de ID " + id1 + " não encontrado!");
+
+      a1.setNome("Lucas");
+
+      if (arqAutores.update(a1))
+        System.out.println("Autor de ID " + a1.getID() + " alterado!");
+      else
+        System.out.println("Autor de ID " + a1.getID() + " não encontrado!");
+
+      //delete
+
+
+      arqAutores.close();
 
     } catch (Exception e) {
       e.printStackTrace();
